@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const db = require("./controllers/db");
+const db = require("./db");
 
 // const cookieParser = require("cookie-parser");
 // const session = require("express-session");
