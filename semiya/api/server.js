@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const db = require("./db");
+const models = require("./models")
 
 // const cookieParser = require("cookie-parser");
 // const session = require("express-session");
