@@ -1,9 +1,9 @@
 const s = require("sequelize");
 const db = require("../db");
 
-class Compras extends s.Model{}
+class Purchases extends s.Model{}
 
-Compras.init({
+Purchases.init({
     amount:{
         type: s.FLOAT,
         allowNull: false
@@ -12,7 +12,7 @@ Compras.init({
         type: s.STRING,
         allowNull: false
     }
-}, {sequelize:db, modelName:"compras"});
+}, {sequelize:db, modelName:"purchases"});
 
 
-module.exports = Compras;
+module.exports = Purchases;
