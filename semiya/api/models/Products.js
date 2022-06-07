@@ -12,6 +12,9 @@ Products.init({
         type: s.FLOAT,
         allowNull: false
     },
+    rating: {
+        type: s.FLOAT
+    },
     stock: {
         type: s.FLOAT,
         allowNull: false,
