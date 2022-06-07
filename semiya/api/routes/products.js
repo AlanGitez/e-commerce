@@ -1,3 +1,4 @@
+
 const express = require("express");
 const { Products } = require("../models");
 const ProductsRouter = express.Router();
@@ -73,3 +74,4 @@ ProductsRouter.delete("/:id", (req, res, next) => {
 });
 
 module.exports = ProductsRouter;
+
