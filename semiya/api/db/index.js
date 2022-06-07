@@ -6,3 +6,4 @@ const db = new sequelize("semiYa", null, null, {
 })
 
 module.exports = db;
+
