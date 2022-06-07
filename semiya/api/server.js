@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const db = require("./db");
 const models = require("./models")
+const routes = require("./routes");
 
 // const cookieParser = require("cookie-parser");
 // const session = require("express-session");
@@ -13,7 +14,6 @@ const models = require("./models")
 
 
 // Express Route File Requires
-// const routes = require("./api/routes");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -79,6 +79,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // });
 
 const port = 3001;
+
+app.use("/api", routes);
 
 app.use("/api", (req, res) => {
   res.sendStatus(404);
