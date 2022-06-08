@@ -8,10 +8,6 @@ Categories.init({
         type: s.STRING,
         allowNull: false
     },
-    type: {
-        type: s.STRING,
-        allowNull: false
-    }
 }, {sequelize:db, modelName:"categories"});
 
 
