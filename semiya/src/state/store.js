@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
+import { cartReducer } from "./cart";
 import { defaultProductReducer } from "./defaultProducts";
 import { filteredProductReducer } from "./filteredProducts";
 import { singleProductReducer } from "./singleProduct";
@@ -13,6 +14,7 @@ const store = configureStore({
         defaultProducts: defaultProductReducer,
         filteredProducts: filteredProductReducer,
         singleProduct: singleProductReducer,
+        cart: cartReducer,
     },
 });
 
