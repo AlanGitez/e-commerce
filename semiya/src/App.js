@@ -16,11 +16,16 @@ import ForgotPassword from './components/ForgotPassword.js'
 import { useDispatch } from "react-redux";
 import { defaultProductRequest } from "./state/defaultProducts.js";
 
+
 function App() {
   const dispach=useDispatch()
   useEffect(()=>{dispach(defaultProductRequest())},[])
   
   return (
+    <>
+    <Routes>
+      <Route />
+    </Routes>
     <div className="App">
       <Header />
       <Navbar />
@@ -39,6 +44,7 @@ function App() {
       </Routes>
       <Footer />
     </div>
+    </>
   );
 }
 
