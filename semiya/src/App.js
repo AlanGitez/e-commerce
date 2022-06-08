@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+import logo from './logo.svg';
+import './App.css';
+import { Navigate, Route, Routes } from "react-router";
+=======
 import "./App.css";
 import { Routes, Route , Navigate} from "react-router";
 import Header from "./components/Header";
@@ -12,9 +17,14 @@ import CheckOut from './components/CheckOut.js'
 import Login from './components/Login.js'
 import Register from './components/Register.js'
 import ForgotPassword from './components/ForgotPassword.js'
+>>>>>>> 6ba4d334a7feecfa039d5aaaad1afe39b3e9a391
 
 function App() {
   return (
+    <>
+    <Routes>
+      <Route />
+    </Routes>
     <div className="App">
       <Header />
       <Navbar />
@@ -33,6 +43,7 @@ function App() {
       </Routes>
       <Footer />
     </div>
+    </>
   );
 }
 
