@@ -1,33 +1,14 @@
-
 const express = require("express");
 const { Products } = require("../models");
 const ProductsRouter = express.Router();
 
-// const filterQuery = (req, res, send) => {
-//   next();
+const { filterQuery } = require("../utils/middlewares");
 
-//   ProductsRouter.get("/", (req, res, next) => {
-//     console.log(req);
 
-// };
-//devuelve todos los productos
-//filterQuery = filtra si tiene query o no
-ProductsRouter.get("/", function (req, res, next) {
-  if (req.query === {}) {
-    console.log(...req.query);
-    Products.findAll()
-      .then((productos) => res.send(productos))
-      .catch((error) => console.log(error));
-  } else {
-    console.log(req.query);
-    Products.findAll({
-      where: { name: req.query.name },
-
-      // include: [{ model: Categories, as: 'categories'}]
-    })
-      .then((products) => res.send(products))
-      .catch((err) => console.error("PRODUCT-QUERYSEARCH-ERR", err));
-  }
+ProductsRouter.get("/", filterQuery, (req, res, next) => {
+  Products.findAll()
+    .then((products) => res.send(products))
+    .catch((error) => console.log(error));
 });
 
 //devuelve un producto especifico

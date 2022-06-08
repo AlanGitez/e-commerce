@@ -7,7 +7,7 @@ Categories.init({
     name:{
         type: s.STRING,
         allowNull: false
-    }
+    },
 }, {sequelize:db, modelName:"categories"});
 
 

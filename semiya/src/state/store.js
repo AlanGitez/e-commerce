@@ -15,6 +15,7 @@ const store = configureStore({
     singleProduct: singleProductReducer,
     cart: cartReducer,
   },
+
 });
 
 export default store;
