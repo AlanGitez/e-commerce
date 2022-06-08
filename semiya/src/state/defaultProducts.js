@@ -8,6 +8,6 @@ export const defaultProductRequest = createAsyncThunk("SEND_FILTEREDPRODUCTS_REQ
     )
 });
 
-export const defaultProductReducer = createReducer({}, {
+export const defaultProductReducer = createReducer([], {
     [defaultProductRequest.fulfilled]:(state,action) => action.payload
 });

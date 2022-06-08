@@ -1,11 +1,20 @@
 import React from "react";
 import useInput from "../Hooks/useInput";
+import { useDispatch } from "react-redux";
+import { filteredProductRequest } from "../state/filteredProducts";
 
 const Search = () => {
   const product=useInput()
   const category=useInput()
+  const dispach=useDispatch();
+
+  const submitHandler=(e)=>{
+    e.preventDefault();
+    dispach(filteredProductRequest(product.value))
+  }
+
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <div class="mb-3">
         <label for="Product" class="form-label">
           Product:
