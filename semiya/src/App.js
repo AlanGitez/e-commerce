@@ -1,8 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import { Navigate, Route, Routes } from "react-router";
 
 function App() {
   return (
+    <>
+    <Routes>
+      <Route />
+    </Routes>
     <div className="App">
       <p>a ver si esto se arregla</p>
       <header className="App-header">
@@ -20,6 +25,7 @@ function App() {
         </a>
       </header>
     </div>
+    </>
   );
 }
 
