@@ -1,10 +1,10 @@
 const { createAsyncThunk, createReducer } = require("@reduxjs/toolkit");
 const axios = require("axios");
 
-export const filteredProductRequest = createAsyncThunk("SEND_FILTEREDPRODUCTS_REQUEST", (param, wayToFilter, condition) => {
+export const filteredProductRequest = createAsyncThunk("SEND_FILTEREDPRODUCTS_REQUEST", (wayToFilter, condition) => {
     
     return(
-        axios.get(`/api/products/${param}?${wayToFilter}=${condition}`)
+        axios.get(`/api/products?${wayToFilter}=${condition}`)
         .then(res => res.data)
     )
 });

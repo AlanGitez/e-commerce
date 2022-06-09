@@ -1,7 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 
 const Home = () => {
+  const user = useSelector(state => state.user);
   return (
   
     <div class="container">
@@ -38,6 +40,9 @@ const Home = () => {
         One of three columns
       </div>
     </div>
+
+    {user.id ? <h1>ESTAS LOGGEADO PADRE</h1> : <h1> NO ESTAS LOGGEADO </h1>}
+
   </div>
     )
 };

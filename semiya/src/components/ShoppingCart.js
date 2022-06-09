@@ -6,13 +6,12 @@ import { clearCart } from "../state/cart";
 
 const ShoppingCart = () => {
   const cart = useSelector((state) => state.cart);
+  
 
   const dispatch = useDispatch();
   const cleanCart = () => {
     dispatch(clearCart());
   };
-
-  console.log("el carrito es ", cart);
 
   return (
     <>

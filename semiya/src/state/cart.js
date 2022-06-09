@@ -1,5 +1,5 @@
 const { createAction, createReducer } = require("@reduxjs/toolkit");
-const axios = require("axios");
+
 
 export const addToCart = createAction("ADD_TO_CART");
 export const deleteFromCart = createAction("DELETE_TO_CART");

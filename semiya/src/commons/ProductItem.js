@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { addToCart } from "../state/cart";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import AddCartButton from "./AddCartButton";
 
 const ProductItem = ({ product }) => {
-  const dispatch = useDispatch();
-  const handlerClick = (e) => {
-    e.preventDefault()
-    dispatch(addToCart(product));
-  };
+  const cart = useSelector(state => state.cart);
+  // const [storageCart, setStorageCart] = useLocalStorage("cart", []);
+  
+  
+ 
 
   return (
     <Link to={`/product/${product.id}`}>
@@ -18,14 +19,7 @@ const ProductItem = ({ product }) => {
           <div class="card-body">
             <h5 class="card-title">{product.name}</h5>
             <p class="card-text">{product?.rating}</p>
-            <button
-              type="button"
-              disable={product.stock ? "false" : "true"}
-              class="btn btn-success"
-              onClick={handlerClick}
-            >
-              Add to Cart
-            </button>
+            <AddCartButton product={product} />
 
             <p class="card-text">
               {product.stock ? "Hay Stock" : "No contamos con Stock"}
