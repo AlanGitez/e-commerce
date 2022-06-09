@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import "./App.css";
 import { Routes, Route , Navigate} from "react-router";
 import Header from "./components/Header";
@@ -16,7 +16,6 @@ import ForgotPassword from './components/ForgotPassword.js'
 import { useDispatch } from "react-redux";
 import { defaultProductRequest } from "./state/defaultProducts.js";
 
-
 function App() {
   const dispach=useDispatch()
   useEffect(()=>{dispach(defaultProductRequest())},[])
@@ -27,8 +26,8 @@ function App() {
       <Route />
     </Routes>
     <div className="App">
-      <Header />
       <Navbar />
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path='/products' element={<ProductList/>}/>
