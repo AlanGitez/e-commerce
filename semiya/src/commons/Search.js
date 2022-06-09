@@ -1,5 +1,5 @@
 import React from "react";
-import useInput from "../Hooks/useInput";
+import useInput from "../hooks/useInput";
 import { useDispatch } from "react-redux";
 import { filteredProductRequest } from "../state/filteredProducts";
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import useInput from "../Hooks/useInput";
+import useInput from "../hooks/useInput";
 import axios from 'axios'
 import {useParams} from 'react-router'
 import { singleProductRequest } from "../state/singleProduct";

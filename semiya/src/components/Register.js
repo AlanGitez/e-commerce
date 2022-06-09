@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useInput from "../Hooks/useInput";
+import useInput from "../hooks/useInput";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
