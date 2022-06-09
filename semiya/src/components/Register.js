@@ -1,51 +1,30 @@
-import React, { useState } from "react";
-import useInput from "../Hooks/useInput";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import useInput from "../hooks/useInput";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import useEmailValidity from "../hooks/useEmailValidity";
+import usePasswordValidity from "../hooks/usePasswordValidity";
 
 const Register = () => {
   const name = useInput();
   const lastName = useInput();
   const address = useInput();
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [emailValidity, setEmailValidity] = useState(true);
-  const [password, setPassword] = useState("");
-  const [passwordValidity, setPasswordValidity] = useState(true);
-
-  const checkEmailValidity = (e) => {
-    let validEmail = new RegExp(
-      /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
-    console.log("Name de target:", e.target.value);
-    setEmail(e.target.value);
-    validEmail.test(e.target.value)
-      ? setEmailValidity(true)
-      : setEmailValidity(false);
-  };
-
-  const checkPasswordValidity = (e) => {
-    let validPassword = new RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/);
-    console.log("Name de target:", e.target.value);
-    setPassword(e.target.value);
-    console.log(validPassword.test(e.target.value));
-    validPassword.test(e.target.value)
-      ? setPasswordValidity(true)
-      : setPasswordValidity(false);
-  };
+  const email = useEmailValidity();
+  const password = usePasswordValidity();
 
   const loginHandler = (e) => {
     e.preventDefault();
-    if (emailValidity && passwordValidity)
+    if (email.validity && password.validity)
       axios
         .post("/api/users/register", {
           name: name.value,
           lastName: lastName.value,
-          email: email,
-          password: password,
+          email: email.value,
+          password: password.value,
           address: address.value,
         })
-        .then(() => navigate("/"))
+        .then(() => navigate("/login"))
         .catch((error) => console.log("Register/Axios error: ", error));
   };
 
@@ -89,9 +68,9 @@ const Register = () => {
             id="exampleInputEmail1"
             placeholder="email@example.com"
             aria-describedby="emailHelp"
-            onChange={checkEmailValidity}
+            {...email}
           />
-          {!emailValidity && (
+          {!email.validity && (
             <p style={{ color: "red", fontWeight: "bolder" }}>Invalid email</p>
           )}
         </div>
@@ -104,9 +83,9 @@ const Register = () => {
             className="form-control"
             placeholder="Password"
             id="exampleInputPassword1"
-            onChange={checkPasswordValidity}
+            {...password}
           />
-          {!passwordValidity && (
+          {!password.validity && (
             <p style={{ color: "red", fontWeight: "bolder" }}>
               Password must have at least 8 characters, one number and one
               letter.
@@ -126,7 +105,7 @@ const Register = () => {
             {...address}
           />
         </div>
-        {email.length && password.length ? (
+        {email.value.length && password.value.length ? (
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
@@ -136,6 +115,9 @@ const Register = () => {
           </button>
         )}
       </form>
+      <Link to="/login">
+        <p>Login</p>
+      </Link>
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import useInput from "../Hooks/useInput";
+import useInput from "../hooks/useInput";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginRequest } from "../state/user";
@@ -56,6 +56,9 @@ const Login = () => {
           Submit
         </button>
       </form>
+      <Link to="/register">
+        <p>Register</p>
+      </Link>
       <Link to="/forgot-password">
         <p>Forgot Password?</p>
       </Link>
