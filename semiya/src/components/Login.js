@@ -18,6 +18,7 @@ const Login = () => {
 
   return (
     <>
+    <div className="container">
       <h2>Login</h2>
       <form onSubmit={loginHandler}>
         <div className="mb-3">
@@ -31,7 +32,7 @@ const Login = () => {
             placeholder="email@example.com"
             aria-describedby="emailHelp"
             {...email}
-          />
+            />
         </div>
         <div className="mb-3">
           <label htmlFor="inputPassword" className="form-label">
@@ -43,25 +44,23 @@ const Login = () => {
             placeholder="Password"
             id="inputPassword"
             {...password}
-          />
+            />
         </div>
         {/* Descomentar esto para cuando tengamos a mano la persistencia */}
         {/* <div class="form-check mb-3">
           <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" name="remember" />{" "}
-            Remember me
+          <input class="form-check-input" type="checkbox" name="remember" />{" "}
+          Remember me
           </label>
         </div> */}
         <button type="submit" className="btn btn-primary">
-          Submit
+          Log In
         </button>
       </form>
-      <Link to="/register">
-        <p>Register</p>
-      </Link>
       <Link to="/forgot-password">
         <p>Forgot Password?</p>
       </Link>
+      </div>
     </>
   );
 };

@@ -4,6 +4,7 @@ import useInput from "../hooks/useInput";
 import axios from 'axios'
 import {useParams} from 'react-router'
 import { singleProductRequest } from "../state/singleProduct";
+import Navbar from "../components/Navbar";
 
 const ProductDetail = () => {
   const newReview = useInput();
@@ -26,6 +27,7 @@ const ProductDetail = () => {
 
   return (
     <>
+    <Navbar/>
       <div className="card mb-3">
         <div className="row g-0">
           <div className="col-md-4">

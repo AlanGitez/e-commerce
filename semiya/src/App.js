@@ -13,6 +13,7 @@ import CheckOut from "./components/CheckOut.js";
 import Login from "./components/Login.js";
 import Register from "./components/Register.js";
 import ForgotPassword from "./components/ForgotPassword.js";
+import Contact from "./components/Contact.js"
 import { useDispatch } from "react-redux";
 import { defaultProductRequest } from "./state/defaultProducts.js";
 
@@ -26,7 +27,6 @@ function App() {
     <>
       <div className="App">
         <Header />
-        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ProductList />} />
@@ -37,6 +37,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/404" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/404" />} />
         </Routes>

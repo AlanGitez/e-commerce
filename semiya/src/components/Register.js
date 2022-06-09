@@ -1,6 +1,6 @@
 import React from "react";
 import useInput from "../hooks/useInput";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import useEmailValidity from "../hooks/useEmailValidity";
 import usePasswordValidity from "../hooks/usePasswordValidity";
@@ -29,7 +29,7 @@ const Register = () => {
   };
 
   return (
-    <>
+    <div className="container">
       <h2>Register</h2>
       <form onSubmit={loginHandler}>
         <div className="mb-3">
@@ -107,18 +107,15 @@ const Register = () => {
         </div>
         {email.value.length && password.value.length ? (
           <button type="submit" className="btn btn-primary">
-            Submit
+            Sign In
           </button>
         ) : (
           <button type="submit" className="btn btn-primary" disabled={true}>
-            Submit
+            Sign In
           </button>
         )}
       </form>
-      <Link to="/login">
-        <p>Login</p>
-      </Link>
-    </>
+    </div>
   );
 };
 
