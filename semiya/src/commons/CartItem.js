@@ -1,12 +1,20 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { deleteFromCart } from "../state/cart";
 
-const CartItem = ({ data, addToCart }) => {
-  let { id, name, price } = data;
+const CartItem = ({ products }) => {
+  const dispatch = useDispatch();
+  const deleteSingleProduct = () => {
+    dispatch(deleteFromCart(products));
+  };
+
   return (
     <div>
-      <h4>{name}</h4>
-      <h5>${price}</h5>
-      <button onClick={() => addToCart(id)}>Agregar al carrito</button>
+      <h4>{products.name}</h4>
+      <h5>${products.price}</h5>
+      <button onClick={deleteSingleProduct}>Delete</button>
+      {/* <button onClick={}>+</button>
+      <button onClick={}>-</button> */}
     </div>
   );
 };
