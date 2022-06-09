@@ -22,9 +22,9 @@ function App() {
   
   return (
     <>
-    <Routes>
+    {/* <Routes>
       <Route />
-    </Routes>
+    </Routes> */}
     <div className="App">
       <Navbar />
       <Header />
