@@ -56,6 +56,9 @@ const Login = () => {
           Submit
         </button>
       </form>
+      <Link to="/register">
+        <p>Register</p>
+      </Link>
       <Link to="/forgot-password">
         <p>Forgot Password?</p>
       </Link>

@@ -4,7 +4,7 @@ const axios = require("axios");
 export const loginRequest = createAsyncThunk("SEND_LOGIN_REQUEST", (data) => {
     
     return(
-        axios.post("/api/login", data)
+        axios.post("/api/users/login", data)
         .then(res => res.data)
     )
 });

@@ -4,14 +4,14 @@ import { useDispatch } from "react-redux";
 import { filteredProductRequest } from "../state/filteredProducts";
 
 const Search = () => {
-  const product=useInput()
-  const category=useInput()
-  const dispach=useDispatch();
+  const product = useInput();
+  // const category = useInput();
+  const dispach = useDispatch();
 
-  const submitHandler=(e)=>{
+  const submitHandler = (e) => {
     e.preventDefault();
-    dispach(filteredProductRequest(product.value))
-  }
+    dispach(filteredProductRequest(product.value));
+  };
 
   return (
     <form onSubmit={submitHandler}>
@@ -19,11 +19,7 @@ const Search = () => {
         <label for="Product" class="form-label">
           Product:
         </label>
-        <input
-        {...product}
-          type="text"
-          class="form-control"
-        />
+        <input {...product} type="text" class="form-control" />
       </div>
       {/* Aca irian las categorias <select class="form-select" aria-label="Default select example">
         <option {...category} selected>Categories</option>

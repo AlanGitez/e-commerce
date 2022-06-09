@@ -4,19 +4,20 @@ import ProductItem from "./ProductItem.js";
 import Search from "./Search.js";
 
 const ProductList = () => {
-
   // const filteredProducts = useSelector((state) => state.filteredProducts);
- const defaultProducts=useSelector((state)=>state.defaultProducts)
-  
+  const defaultProducts = useSelector((state) => state.defaultProducts);
+
   return (
     <>
       <Search />
       {/* {!filteredProducts && ( */}
+      {console.log("errror de redux aklan", defaultProducts)}
+      <div className="container">
         <div class="row row-cols-1 row-cols-md-3 g-4">
-          {defaultProducts && defaultProducts.map((product) => (
-            <ProductItem product={product} key={product.id}/>
-          ))}
+          {defaultProducts &&
+            defaultProducts.map((product) => <ProductItem product={product} />)}
         </div>
+      </div>
       {/* )} */}
     </>
   );
