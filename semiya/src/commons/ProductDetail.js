@@ -1,8 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useInput from "../hooks/useInput";
+<<<<<<< HEAD
 import axios from "axios";
 import { useParams } from "react-router";
+=======
+import axios from 'axios'
+import {useParams} from 'react-router'
+>>>>>>> b6abb4161f7ef9d44eda066987b5169fdeed177c
 import { singleProductRequest } from "../state/singleProduct";
 
 const ProductDetail = () => {

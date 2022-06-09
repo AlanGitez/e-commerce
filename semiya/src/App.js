@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router";
 import Header from "./components/Header";
@@ -24,9 +24,6 @@ function App() {
 
   return (
     <>
-      <Routes>
-        <Route />
-      </Routes>
       <div className="App">
         <Header />
         <Navbar />
