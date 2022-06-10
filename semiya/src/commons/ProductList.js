@@ -1,23 +1,22 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductItem from "./ProductItem.js";
-import Search from "./Search.js";
+import Navbar from "../components/Navbar";
 
 const ProductList = () => {
+  const filteredProducts = useSelector((state) => state.filteredProducts);
+  const defaultProducts = useSelector((state) => state.defaultProducts);
 
-  // const filteredProducts = useSelector((state) => state.filteredProducts);
- const defaultProducts=useSelector((state)=>state.defaultProducts)
-  
   return (
     <>
-      <Search />
+     <Navbar/>
       {/* {!filteredProducts && ( */}
-   { console.log('errror de redux aklan',defaultProducts)}
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          {defaultProducts && defaultProducts.map((product) => (
-            <ProductItem product={product} />
-          ))}
+      <div className="container">
+        <div className="row row-cols-1 row-cols-md-3 g-4">
+          {defaultProducts.length!=0 &&
+            (filteredProducts||defaultProducts).map((product,i) => <ProductItem key={i} product={product} />)}
         </div>
+      </div>
       {/* )} */}
     </>
   );

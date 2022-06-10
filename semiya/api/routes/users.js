@@ -5,25 +5,36 @@ const passport = require("passport");
 
 
 UsersRouter.post("/register", (req, res, next) => {
-  Users.create(req.body)
-  .then((user) => res.status(201).send(user))
-  .catch(next);
-});
-
-UsersRouter.post("/login", passport.authenticate("local"), (req, res) => {
-  req.login(req.user, function (err) {
-    if (err) {
-      return next(err);
-    }
-    return res.send(req.user);
+    Users.create(req.body)
+      .then((user) => res.status(201).send(user))
+      .catch(next);
   });
-});
+  
+  UsersRouter.post("/login", passport.authenticate("local"), (req, res) => {
+    console.log("Llego al back:", req.body)
+    req.login(req.user, function (err) {
+      if (err) {
+        return next(err);
+      }
+      return res.send(req.user);
+    });
+  });
+  
+  UsersRouter.post("/logout", (req, res, next) => {
+    req.logout(function (err) {
+      if (err) {
+        return next(err);
+      }
+      return res.sendStatus(200);
+    });
+  });
+
 
 UsersRouter.post("/logout", (req, res, next) => {
   req.logout(function (err) {
     if (err) {
       return next(err);
-    }
+
     return res.sendStatus(200);
   });
 });
