@@ -11,8 +11,6 @@ const ProductList = () => {
     <>
      <Navbar/>
       {/* {!filteredProducts && ( */}
-      {console.log("defaultProducts", defaultProducts)}
-      {console.log("filteredProducts", filteredProducts)}
       <div className="container">
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {defaultProducts.length!=0 &&

@@ -5,6 +5,7 @@ import axios from 'axios'
 import {useParams} from 'react-router'
 import { singleProductRequest } from "../state/singleProduct";
 import Navbar from "../components/Navbar";
+import AddCartButton from "./AddCartButton";
 
 const ProductDetail = () => {
   const newReview = useInput();
@@ -44,13 +45,7 @@ const ProductDetail = () => {
               </h5>
               <p className="card-text">{singleProduct.description}</p>
               <p className="card-text">{singleProduct.price}</p>
-              <button
-                type="button"
-                // disable={singleProduct.stock ? "false" : "true"}
-                className="btn btn-success"
-              >
-                Add to Cart
-              </button>
+              <AddCartButton product={singleProduct} />
               <p className="card-text">
                 {singleProduct.stock ? "Hay Stock" : "No contamos con Stock"}
               </p>

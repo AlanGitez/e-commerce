@@ -43,7 +43,8 @@ UsersRouter.post("/register", (req, res, next) => {
       .catch(next);
   });
 
-  UsersRouter.get("/me", (req, res) => {
+  UsersRouter.get("/me", passport.authenticate("local"), (req, res) => {
+    console.log(req.user)
     if (!req.user) {
       return res.sendStatus(401);
     }
