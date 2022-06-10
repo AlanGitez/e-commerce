@@ -16,6 +16,7 @@ UsersRouter.post("/register", (req, res, next) => {
   });
   
   UsersRouter.post("/login", passport.authenticate("local"), (req, res) => {
+    console.log("Llego al back:", req.body)
     req.login(req.user, function (err) {
       if (err) {
         return next(err);
@@ -42,7 +43,8 @@ UsersRouter.post("/register", (req, res, next) => {
       .catch(next);
   });
 
-  UsersRouter.get("/me", (req, res) => {
+  UsersRouter.get("/me", passport.authenticate("local"), (req, res) => {
+    console.log(req.user)
     if (!req.user) {
       return res.sendStatus(401);
     }

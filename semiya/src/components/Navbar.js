@@ -1,8 +1,9 @@
 import React from 'react'
+import Search from "../commons/Search";
 
 const Navbar = () => {
   return (
-    <div>Navbar</div>
+    <div> <Search /></div>
   )
 }
 
