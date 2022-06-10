@@ -2,7 +2,7 @@ import React from "react";
 import useInput from "../hooks/useInput";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { loginRequest } from "../state/user";
+import { loginRequest, setUser } from "../state/user";
 
 
 
@@ -15,13 +15,15 @@ const Login = () => {
   const loginHandler = (e) => {
     e.preventDefault();
     dispatch(loginRequest({email: email.value, password: password.value}))
-    navigate("/");
+    .then(()=> dispatch(setUser()))
+    .then(()=>navigate("/"));
   };
+
 
   return (
     <>
-    <div className="container">
-      <h2>Login</h2>
+    <div className="container littleMargin">
+      <h2>Welcome Back!</h2>
       <form onSubmit={loginHandler}>
         <div className="mb-3">
           <label htmlFor="inputEmail" className="form-label">

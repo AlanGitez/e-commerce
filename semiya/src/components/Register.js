@@ -29,8 +29,8 @@ const Register = () => {
   };
 
   return (
-    <div className="container">
-      <h2>Register</h2>
+    <div className="container littleMargin">
+      <h2>Hello New User!</h2>
       <form onSubmit={loginHandler}>
         <div className="mb-3">
           <label htmlFor="inputName" className="form-label">
@@ -107,11 +107,11 @@ const Register = () => {
         </div>
         {email.value.length && password.value.length ? (
           <button type="submit" className="btn btn-primary">
-            Sign In
+            Register
           </button>
         ) : (
           <button type="submit" className="btn btn-primary" disabled={true}>
-            Sign In
+            Register
           </button>
         )}
       </form>

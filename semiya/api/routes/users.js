@@ -2,6 +2,8 @@ const express = require("express");
 const { Users } = require("../models");
 const UsersRouter = express.Router();
 const passport = require("passport");
+const { itsLoggedIn } = require("../utils/middlewares");
+
 
 UsersRouter.post("/register", (req, res, next) => {
   Users.create(req.body)
@@ -46,13 +48,15 @@ UsersRouter.put("/promote/:id", (req, res, next) => {
     .catch(next);
 });
 
-UsersRouter.get("/me", (req, res) => {
+UsersRouter.get("/me", itsLoggedIn, (req, res) => {
   console.log("req.user: ", req.user)
   if (!req.user) {
     return res.sendStatus(401);
   }
   res.send(req.user);
 });
+
+
 
 UsersRouter.delete("/:id", (req, res, next) => {
   const id = req.params.id;

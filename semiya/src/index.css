@@ -12,3 +12,16 @@ code {
     monospace;
 }
 
+form{
+max-width: 55% ;
+margin: 0 auto;
+text-align: start;
+}
+
+label{
+  padding-left: 1em;
+}
+
+.littleMargin{
+  margin: 0.75em;
+}
