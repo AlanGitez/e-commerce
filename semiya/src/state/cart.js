@@ -1,9 +1,8 @@
 const { createAction, createReducer } = require("@reduxjs/toolkit");
 
-
-
 export const addToCart = createAction("ADD_TO_CART");
 export const deleteFromCart = createAction("DELETE_TO_CART");
+// export const setTotalAmount = createAction("SET_TOTAL_AMOUNT");
 export const clearCart = createAction("CLEAR_TO_CART");
 
 
@@ -13,6 +12,7 @@ export const cartReducer = createReducer([], {
     let index = state.indexOf(action.payload);
     state.splice(index, 1);
   },
+  // [setTotalAmount]: (state, action) => action.payload, 
   [clearCart]: (state, action) => [],
 
 });

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router";
 import Header from "./components/Header";
@@ -17,19 +17,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { defaultProductRequest } from "./state/defaultProducts.js";
 import useLocalStorage from "./hooks/useLocalStorage"
 import { setUser } from "./state/user";
-import {getCartItems} from "./state/cart"
+import {addToCart, getCartItems} from "./state/cart"
 
+const cartFromStorage = JSON.parse(localStorage.getItem("cart")); 
 function App() {
+  const [cartStorage, setCartStorage] = useState(cartFromStorage);
+  const [storageUser, setStorageUser] =  useLocalStorage("user", "");
   const cart = useSelector(state => state.cart);
   const getCartItems = useSelector(state => state.getCartItems);
   const user = useSelector(state => state.user);
-  const [storageUser, setStorageUser] =  useLocalStorage("user", "");
-  const [storageCart, setStorageCart] =  useLocalStorage("cart", cart);
   const dispatch = useDispatch();
 
-  console.log("myCartItems", getCartItems);
+  // console.log("storageCart", storageCart);
   useEffect(() => {
-    dispatch(defaultProductRequest());  
+    dispatch(defaultProductRequest());
+    // const totalAmount = cart.reduce((item, ac) => ac += item.price);
+    // dispatch(setTotalAmount(totalAmount));
   }, []);
 
   useEffect(() => {
@@ -38,9 +41,14 @@ function App() {
   }, [user])
   
   // useEffect(() => {
-  //     setStorageCart((cart));
-  // }, [cart]);
-  // console.log("my cart", cart);
+  //   localStorage.get("")
+  // }, []);
+
+  useEffect(() => {
+    if(cartStorage){
+      dispatch(addToCart(cartStorage))
+    }
+  }, [cart.length === 0]);
 
   return (
     <>
