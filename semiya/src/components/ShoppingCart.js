@@ -17,7 +17,7 @@ const ShoppingCart = () => {
     <>
       <div>
         {/* FILA DEL TITUTLO */}
-        <div className="row">
+        <div className="row littleMargingit ">
           <h4>SHOPPING CART</h4>
           <hr />
         </div>
@@ -32,9 +32,9 @@ const ShoppingCart = () => {
             ))}
           </ul>
         </div>
-
-        <h3>Total $</h3>
-        <button onClick={cleanCart}>Limpiar Carrito</button>
+{/* 
+        <h3>Total $</h3> */}
+        <button onClick={cleanCart} className='btn btn-warning littleMargin'>Limpiar Carrito</button>
       </div>
     </>
   );

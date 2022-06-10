@@ -18,7 +18,7 @@ const Search = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container littleMargin">
       <form onSubmit={submitHandler}>
         <div className="input-group">
           <input
