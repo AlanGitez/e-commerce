@@ -15,7 +15,8 @@ const Header = () => {
         {/* Falta la logica de si estas logeado, te muestre logout, y sino Log in y Sign In */}
         <Link to='/products' className="nav-link active" aria-current="page" href="#">Productos</Link>
         <Link to='/login' className="nav-link active" aria-current="page" href="#">Log In</Link>
-        <Link to='/register' className="nav-link active" href="#">Sign In</Link>
+        <Link to='/register' className="nav-link active" href="#">Register</Link>
+        <Link to='/shopping-cart' className="nav-link active" href="#">Shopping Cart</Link>
       </div>
     </div>
   </div>

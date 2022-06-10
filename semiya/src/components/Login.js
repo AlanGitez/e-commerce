@@ -49,9 +49,9 @@ const Login = () => {
             />
         </div>
         {/* Descomentar esto para cuando tengamos a mano la persistencia */}
-        {/* <div class="form-check mb-3">
-          <label class="form-check-label">
-          <input class="form-check-input" type="checkbox" name="remember" />{" "}
+        {/* <div className="form-check mb-3">
+          <label className="form-check-label">
+          <input className="form-check-input" type="checkbox" name="remember" />{" "}
           Remember me
           </label>
         </div> */}
