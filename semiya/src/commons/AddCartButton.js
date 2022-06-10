@@ -1,20 +1,19 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../state/cart';
-
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const AddCartButton = ({product}) => {
-    const dispatch = useDispatch();
+  const cart = useSelector(state => state.cart)
+  const [storageCart, setStorageCart] = useLocalStorage("cart", [])  
+  const dispatch = useDispatch();
+
 
     const handlerClick = (e) => {
         
-        e.preventDefault()
+      e.preventDefault()
         dispatch(addToCart(product));
-        // console.log(typeof storageCart)
-        // const arr = storageCart.push(product)
-        // setStorageCart(Object.keys(storageCart).length ? [...storageCart, product]: [product]);
-
-        };
+      };
 
   return (
         <>
