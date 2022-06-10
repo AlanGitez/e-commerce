@@ -17,4 +17,10 @@ const filterQuery = (req, res, next) => {
     .then((response) => res.send(response.rows))
     .catch((err) => console.error("PRODUCT-QUERYSEARCH-ERR", err));
 };
-module.exports = { filterQuery };
+
+const itsLoggedIn=(req, res, next)=>{
+  if(req.isAuthenticated()) next();
+  else res.sendStatus(401)
+}
+
+module.exports = { filterQuery, itsLoggedIn };
