@@ -20,8 +20,8 @@ const Login = () => {
 
   return (
     <>
-    <div className="container">
-      <h2>Login</h2>
+    <div className="container littleMargin">
+      <h2>Welcome Back!</h2>
       <form onSubmit={loginHandler}>
         <div className="mb-3">
           <label htmlFor="inputEmail" className="form-label">
