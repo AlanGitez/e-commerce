@@ -18,7 +18,7 @@ Favorites.hasMany(Products, {as: "product"});
 Review.belongsTo(Users, {as: "author"});
 Users.hasMany(Review, {as: "review"});
 
-Categories.hasMany(Products, {as:'products'})
+Categories.belongsToMany(Products,  { through: 'products_categories' })
 Products.belongsToMany(Categories, { through: 'products_categories' })
 
 module.exports = {Users, Products, Favorites, Purchases, Review, Categories};
