@@ -4,6 +4,7 @@ import useInput from "../hooks/useInput";
 import axios from 'axios'
 import {useParams} from 'react-router'
 import { singleProductRequest } from "../state/singleProduct";
+import Navbar from "../components/Navbar";
 import AddCartButton from "./AddCartButton";
 
 const ProductDetail = () => {
@@ -27,6 +28,7 @@ const ProductDetail = () => {
 
   return (
     <>
+    <Navbar/>
       <div className="card mb-3">
         <div className="row g-0">
           <div className="col-md-4">
@@ -42,7 +44,7 @@ const ProductDetail = () => {
                 {singleProduct.name} {singleProduct.rating}
               </h5>
               <p className="card-text">{singleProduct.description}</p>
-              <p className="card-text">{singleProduct.price}</p>
+              <p className="card-text">$:{singleProduct.price}</p>
               <AddCartButton product={singleProduct} />
               <p className="card-text">
                 {singleProduct.stock ? "Hay Stock" : "No contamos con Stock"}
@@ -59,9 +61,9 @@ const ProductDetail = () => {
                 </>
               )} */}
               <div className="input-group">
-                <span onClick={handleClick} className="input-group-text">
+                {/* <span onClick={handleClick} className="input-group-text">
                   Add a review:
-                </span>
+                </span> */}
                 {/* <textarea {...newReview}
                 className="form-control"
                 aria-label="With textarea"
@@ -70,7 +72,6 @@ const ProductDetail = () => {
             </div>
           </div>
         </div>
-        //{" "}
       </div>
     </>
   );

@@ -14,8 +14,8 @@ const AddCartButton = ({product}) => {
         
       e.preventDefault()
       dispatch(addToCart(product))
-      setProducts([...products, product])
-      setStorageCart(products)
+      // setProducts([...products, product])
+      // setStorageCart(products)
       // if(!cart.length){
       //   console.log("entre al if");
       //   dispatch(addToCart(storageCart))
@@ -28,18 +28,17 @@ const AddCartButton = ({product}) => {
       };
 
   return (
-        <>
-             <button
-              type="button"
-              disable={product.stock ? "false" : "true"}
-              class="btn btn-success"
-              onClick={handlerClick}
-            >
-              Add to Cart
-            </button>
-        
-        </>
-  )
-}
+    <>
+      <button
+        type="button"
+        disable={product.stock ? "false" : "true"}
+        className="btn btn-success"
+        onClick={handlerClick}
+      >
+        Add to Cart
+      </button>
+    </>
+  );
+};
 
 export default AddCartButton;

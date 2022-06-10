@@ -1,5 +1,6 @@
 const s = require("sequelize");
 const db = require("../db");
+const Products = require("./Products");
 
 class Categories extends s.Model{}
 
@@ -12,3 +13,5 @@ Categories.init({
 
 
 module.exports = Categories;
+
+

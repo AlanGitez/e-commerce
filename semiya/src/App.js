@@ -13,48 +13,43 @@ import CheckOut from "./components/CheckOut.js";
 import Login from "./components/Login.js";
 import Register from "./components/Register.js";
 import ForgotPassword from "./components/ForgotPassword.js";
+import Contact from "./components/Contact.js";
 import { useDispatch, useSelector } from "react-redux";
 import { defaultProductRequest } from "./state/defaultProducts.js";
-import useLocalStorage from "./hooks/useLocalStorage"
+import { addToCart, restoreCartFromStorage } from "./state/cart.js";
+import useLocalStorage from "./hooks/useLocalStorage";
+import axios from "axios";
 import { setUser } from "./state/user";
-import {addToCart, getCartItems} from "./state/cart"
 
-const cartFromStorage = JSON.parse(localStorage.getItem("cart")); 
 function App() {
-  const [cartStorage, setCartStorage] = useState(cartFromStorage);
-  const [storageUser, setStorageUser] =  useLocalStorage("user", "");
-  const cart = useSelector(state => state.cart);
-  const getCartItems = useSelector(state => state.getCartItems);
-  const user = useSelector(state => state.user);
+  const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
+  const cartFromStorage = JSON.parse(localStorage.getItem("cart"));
+  const [storageUser, setStorageUser] = useLocalStorage("user", "");
   const dispatch = useDispatch();
 
-  // console.log("storageCart", storageCart);
   useEffect(() => {
     dispatch(defaultProductRequest());
-    // const totalAmount = cart.reduce((item, ac) => ac += item.price);
-    // dispatch(setTotalAmount(totalAmount));
-  }, []);
+    // dispatch(setUser())
+    // user.id && setStorageUser(user.id);
+  }, [dispatch]);
 
-  useEffect(() => {
-    user.id && setStorageUser(user.id);
-    dispatch(setUser())
-  }, [user])
-  
   // useEffect(() => {
   //   localStorage.get("")
   // }, []);
 
-  useEffect(() => {
-    if(cartStorage){
-      dispatch(addToCart(cartStorage))
-    }
-  }, [cart.length === 0]);
+  // useEffect(() => {
+  //   cart.length && localStorage.setItem("cart", JSON.stringify(cart))
+  // }, [cart]);
+  
+    
+
+
 
   return (
     <>
       <div className="App">
         <Header />
-        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ProductList />} />
@@ -65,6 +60,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/404" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/404" />} />
         </Routes>

@@ -8,20 +8,18 @@ const ProductItem = ({ product }) => {
   const cart = useSelector(state => state.cart);
   // const [storageCart, setStorageCart] = useLocalStorage("cart", []);
   
-  
- 
 
   return (
     <Link to={`/product/${product.id}`}>
-      <div class="col">
-        <div class="card">
-          <img src={product?.image} class="card-img-top" alt={product.name} />
-          <div class="card-body">
-            <h5 class="card-title">{product.name}</h5>
-            <p class="card-text">{product?.rating}</p>
+      <div className="col">
+        <div className="card">
+          <img src={product?.image} className="card-img-top" alt={product.name} />
+          <div className="card-body">
+            <h5 className="card-title">{product.name}</h5>
+            <p className="card-text">{product?.rating}</p>
             <AddCartButton product={product} />
 
-            <p class="card-text">
+            <p className="card-text">
               {product.stock ? "Hay Stock" : "No contamos con Stock"}
             </p>
           </div>
