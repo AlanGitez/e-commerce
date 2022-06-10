@@ -18,29 +18,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { defaultProductRequest } from "./state/defaultProducts.js";
 import { addToCart, restoreCartFromStorage } from "./state/cart.js";
 import useLocalStorage from "./hooks/useLocalStorage";
-import axios from "axios";
-import { setUser } from "./state/user";
 
 function App() {
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
-  const cartFromStorage = JSON.parse(localStorage.getItem("cart"));
+  // const cartFromStorage = JSON.parse(localStorage.getItem("cart"));
   const [storageUser, setStorageUser] = useLocalStorage("user", "");
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(defaultProductRequest());
     // dispatch(setUser())
-    // user.id && setStorageUser(user.id);
+    user.id && setStorageUser(user.id);
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   localStorage.get("")
-  // }, []);
 
-  // useEffect(() => {
-  //   cart.length && localStorage.setItem("cart", JSON.stringify(cart))
-  // }, [cart]);
+  useEffect(() => {
+    cart.length && localStorage.setItem("cart", JSON.stringify(cart))
+  }, []);
   
     
 
