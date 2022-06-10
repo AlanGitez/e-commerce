@@ -6,7 +6,7 @@ import { clearCart } from "../state/cart";
 
 const ShoppingCart = () => {
   const cart = useSelector((state) => state.cart);
-  
+  console.log("cart", cart)
 
   const dispatch = useDispatch();
   const cleanCart = () => {
@@ -24,15 +24,14 @@ const ShoppingCart = () => {
 
         {/* FILA DE PRODUCTOS DE CARRITO */}
         <div className="card">
-
-        <ul className="list-group list-group-flush" > {/* style={{justifyContent:"start"}} */}
-        {cart.map((product) => (
-          <CartItem key={product.id} product={product} />
-          
-          ))}
-        </ul>
+          <ul className="list-group list-group-flush">
+            {" "}
+            {/* style={{justifyContent:"start"}} */}
+            {cart.map((product) => (
+              <CartItem key={product.id} product={product} />
+            ))}
+          </ul>
         </div>
-
 
         <h3>Total $</h3>
         <button onClick={cleanCart}>Limpiar Carrito</button>
