@@ -2,7 +2,7 @@ import React from "react";
 import useInput from "../hooks/useInput";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { loginRequest } from "../state/user";
+import { loginRequest, setUser } from "../state/user";
 
 
 
@@ -15,8 +15,10 @@ const Login = () => {
   const loginHandler = (e) => {
     e.preventDefault();
     dispatch(loginRequest({email: email.value, password: password.value}))
-    navigate("/");
+    .then(()=> dispatch(setUser()))
+    .then(()=>navigate("/"));
   };
+
 
   return (
     <>
