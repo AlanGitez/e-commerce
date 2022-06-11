@@ -14,17 +14,7 @@ const AddCartButton = ({product}) => {
         
       e.preventDefault()
       dispatch(addToCart(product))
-      // setProducts([...products, product])
-      // setStorageCart(products)
-      // if(!cart.length){
-      //   console.log("entre al if");
-      //   dispatch(addToCart(storageCart))
-      //   setStorageCart(storageCart)
-      // }else{
-      //     dispatch(addToCart(product));
-      //     console.log("entre al else", cart);
-      //     setStorageCart(cart);
-      //   }
+
       };
 
   return (
