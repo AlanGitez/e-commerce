@@ -11,7 +11,7 @@ const ProductList = () => {
     <>
      <Navbar/>
       {/* {!filteredProducts && ( */}
-      <div className="container">
+      <div className="container-sm">
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {defaultProducts.length!=0 &&
             (filteredProducts||defaultProducts).map((product,i) => <ProductItem key={i} product={product} />)}
