@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../commons/CartItem";
 import { clearCart } from "../state/cart";
@@ -6,10 +6,24 @@ import { clearCart } from "../state/cart";
 const ShoppingCart = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const [totalAmount, setTotalAmount] = useState(0);
 
   const cleanCart = () => {
-    dispatch(clearCart());
+    dispatch(clearCart())
+    localStorage.removeItem('cart')
   };
+
+  useEffect(() => {
+    if (cart.length !== 0) {
+      setTotalAmount(
+        cart.reduce((suma, item) => {
+          return (suma += item.price);
+        }, 0)
+      );
+    } else {
+      setTotalAmount(0)
+    }
+  }, [cart]);
 
   return (
     <>
@@ -30,17 +44,21 @@ const ShoppingCart = () => {
             ))}
           </ul>
         </div>
-{/* 
+        {/* 
         <h3>TOTAL $</h3> */}
         <div className="row d-flex justify-content-end">
           <div className="col-sm d-flex justify-content-end">
-            <button onClick={cleanCart} className='btn btn-warning littleMargin'>Limpiar Carrito</button>
-        </div>
+            <button
+              onClick={cleanCart}
+              className="btn btn-warning littleMargin"
+            >
+              Limpiar Carrito
+            </button>
+          </div>
 
-        <div className="col-sm-5 d-flex align-items-center justify-content-end">
-          <h4>{`TOTAL $2000`}</h4>
-        </div>
-
+          <div className="col-sm-5 d-flex align-items-center justify-content-end">
+            <h4>{`TOTAL ${totalAmount}`}</h4>
+          </div>
         </div>
       </div>
     </>

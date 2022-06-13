@@ -23,14 +23,13 @@ import { setUser } from "./state/user";
 function App() {
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
-  const [storageCart, setStorageCart] =  useLocalStorage("cart", cart);
+  const [storageCart, setStorageCart] = useLocalStorage("cart", cart);
   const [storageUser, setStorageUser] = useLocalStorage("user", "");
   const dispatch = useDispatch();
 
-  
   useEffect(() => {
     dispatch(defaultProductRequest());
-    dispatch(setUser())
+    dispatch(setUser());
     user.id && setStorageUser(user.id);
     !cart.length && dispatch(updateFromStorage());
   }, []);
