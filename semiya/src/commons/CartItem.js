@@ -2,13 +2,16 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteFromCart } from "../state/cart";
 import useInput from "../hooks/useInput";
+import { useSelector } from "react-redux";
 
 const CartItem = ({ product }) => {
   const dispatch = useDispatch();
+  const cart = useSelector(state => state.cart)
   const quantity = useInput();
 
   const handleDelete = (e) => {
     e.preventDefault();
+    cart.length == 1 && localStorage.removeItem('cart')
     dispatch(deleteFromCart(product));
   }
 
