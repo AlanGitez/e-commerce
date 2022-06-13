@@ -4,7 +4,6 @@ const UsersRouter = express.Router();
 const passport = require("passport");
 const { itsLoggedIn } = require("../utils/middlewares");
 
-
 UsersRouter.post("/register", (req, res, next) => {
   Users.create(req.body)
     .then((user) => res.status(201).send(user))
@@ -12,22 +11,20 @@ UsersRouter.post("/register", (req, res, next) => {
 });
 
 UsersRouter.post("/login", passport.authenticate("local"), (req, res) => {
-  console.log("Llego al back:", req.body);
-  
   req.login(req.user, function (err) {
     if (err) {
       return next(err);
     }
     return res.send(req.user);
   });
-
 });
 
 UsersRouter.post("/logout", (req, res, next) => {
+  
   req.logout(function (err) {
     if (err) {
       return next(err);
-    }
+    } 
     return res.sendStatus(200);
   });
 });
@@ -51,14 +48,11 @@ UsersRouter.put("/promote/:id", (req, res, next) => {
 });
 
 UsersRouter.get("/me", itsLoggedIn, (req, res) => {
-  console.log("req.user: ", req.user)
   if (!req.user) {
     return res.sendStatus(401);
   }
   res.send(req.user);
 });
-
-
 
 UsersRouter.delete("/:id", (req, res, next) => {
   const id = req.params.id;

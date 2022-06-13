@@ -2,27 +2,36 @@ const { createAsyncThunk, createReducer } = require("@reduxjs/toolkit");
 const axios = require("axios");
 
 export const loginRequest = createAsyncThunk("SEND_LOGIN_REQUEST", (data) => {
-  return axios.post("/api/users/login", data).then((res) => res.data);
+  return axios.post("/api/users/login", data).then((res) => {
+    delete res.data.password;
+    delete res.data.salt;
+    return res.data;
+  });
 });
 export const logoutRequest = createAsyncThunk("SEND_LOGOUT_REQUEST", (data) => {
   return axios.post("/api/users/logout", data).then((res) => res.data);
 });
 
 export const setUser = createAsyncThunk("SET_USER", () => {
-  //  en vez de hacer un pedido al back hacer el pedido al local storage o ambas con
-
-  return JSON.parse(localStorage.getItem("user"));
-  //     const localUser= JSON.parse(localStorage.getItem("user"))
-  //   return ( (axios.get("/api/users/me")
-  //    .then(response =>console.log('localuser', localUser, 'response', response.data) (localUser== response.data) &&  localUser)
-  //    .catch((err)=>console.log(err))))
+  const localUser = JSON.parse(localStorage.getItem("user"));
+  console.log('local user',localUser)
+  if (localUser != null)
+   { return axios
+      .get("/api/users/me")
+      .then((response) =>
+        localUser.id === response.data.id ? localUser : null
+      )
+      .catch((err) => console.log(err));}
+      else{ return null}
 });
 
-export const userReducer = createReducer({},{ 
-    // LA LINEA DE ABAJO ES USN PROBLEMA, POR QUE CUANDO SE CUMPLE LA PROMESA, NO SETEA EL USER EN EL ESTADO.
-    [loginRequest.fulfilled]: (state, action) => localStorage.setItem("user", JSON.stringify(action.payload)),
-    // [loginRequest.fulfilled]: (state, action) => action.payload,
+export const userReducer = createReducer(
+  {},
+  {
+    [loginRequest.fulfilled]: (state, action) =>
+      localStorage.setItem("user", JSON.stringify(action.payload)),
     [setUser.fulfilled]: (state, action) => action.payload,
-    [logoutRequest.fulfilled]: (state, action) => action.payload == "OK" && localStorage.setItem("user", null),
+    [logoutRequest.fulfilled]: (state, action) =>
+      action.payload == "OK" && localStorage.setItem("user", null),
   }
 );
