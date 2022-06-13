@@ -1,9 +1,8 @@
 const express = require("express");
-const { Products } = require("../models");
+const { Products, Categories } = require("../models");
 const ProductsRouter = express.Router();
 
 const { filterQuery } = require("../utils/middlewares");
-
 
 ProductsRouter.get("/", filterQuery, (req, res, next) => {
   Products.findAll()
@@ -24,11 +23,20 @@ ProductsRouter.get("/:id", (req, res, next) => {
     .catch((error) => console.log(error));
 });
 
-//agrega un producto
-ProductsRouter.post("/", (req, res) => {
-  Products.create(req.body)
-    .then((products) => res.send(products))
-    .catch((error) => console.log(error));
+
+ProductsRouter.post("/", (req, res, next) => {
+  const { categories } = req.body;
+  const { name } = categories;
+  Categories.findOrCreate({
+    where: { name },
+  })
+    .then((data) => {
+      const category = data[0];
+      Products.create(req.body)
+        .then((product) => product.setCategories(category))
+        .then((product) => res.send(product));
+    })
+    .catch(next);
 });
 
 //modificar un producto
@@ -55,4 +63,3 @@ ProductsRouter.delete("/:id", (req, res, next) => {
 });
 
 module.exports = ProductsRouter;
-

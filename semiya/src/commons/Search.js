@@ -7,14 +7,20 @@ import { useNavigate } from "react-router";
 const Search = () => {
   const navigate=useNavigate()
   const product = useInput();
-  // const category = useInput();
+  const category = useInput();
   const dispach = useDispatch();
 
+
   const submitHandler = (e) => {
-    console.log('esto funciona',  typeof product.value)
     e.preventDefault();
-    dispach(filteredProductRequest( product.value));
-    navigate("/products")
+    const nameQuery= {value:product.value, type:'name'}
+    const categoryQuery= {value:category.value, type: 'category'}
+    product.value? 
+    (dispach(filteredProductRequest(nameQuery)))
+    :
+    (dispach(filteredProductRequest(categoryQuery)))
+    .then(navigate("/products"))
+    .catch(err=> console.log (err))
   };
 
   return (
@@ -37,12 +43,15 @@ const Search = () => {
             Search
           </button>
         </div>
-        {/* Aca irian las categorias <select className="form-select" aria-label="Default select example">
-        <option {...category} selected>Categories</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select> */}
+      
+       <select class="form-select form-select-sm" aria-label="Small select" {...category}>
+  <option selected="">Categories</option>
+  {/* Tomy: Aca iria un map de las diferentes categorias que seedemos */}
+  <option value="Lacteos">Lacteos</option>
+  <option value="Aceites">Aceites</option>
+  <option value="Frutos Secos">Frustos Secos</option>
+</select>
+      
 
       </form>
     </div>
