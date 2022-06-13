@@ -13,7 +13,8 @@ const Header = () => {
     e.preventDefault();
     dispatch(logoutRequest())
       .then(() => dispatch(setUser()))
-      .then(() => navigate("/login"));
+      .then(() => navigate("/login"))
+      .catch(err=> console.log(err));
   };
 
   return (

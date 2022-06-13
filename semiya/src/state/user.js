@@ -16,6 +16,7 @@ export const logoutRequest = createAsyncThunk("SEND_LOGOUT_REQUEST", (data) => {
 
 export const setUser = createAsyncThunk("SET_USER", () => {
   const localUser = JSON.parse(localStorage.getItem("user"));
+
   if (localUser != null) {
     return axios
       .get("/api/users/me")
