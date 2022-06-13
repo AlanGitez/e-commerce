@@ -28,6 +28,10 @@ Products.init(
       type: s.BOOLEAN,
       // defaultValue : false,
     },
+    quantity : {
+      type: s.INTEGER,
+      defaultValue: 1
+    },
     image: {
       type: s.STRING,
       // allowNull: false,

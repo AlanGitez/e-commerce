@@ -18,7 +18,10 @@ const setValue = value => {
   } catch (error) {
     console.error(error)
   }
+  
 }
+
+
 return [storedValue, setValue]
 }
 

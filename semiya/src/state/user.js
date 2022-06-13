@@ -1,5 +1,7 @@
-const { createAsyncThunk, createReducer } = require("@reduxjs/toolkit");
-const axios = require("axios");
+import useLocalStorage from "../hooks/useLocalStorage";
+import { createAsyncThunk, createReducer }  from"@reduxjs/toolkit";
+import axios  from"axios";
+
 
 export const loginRequest = createAsyncThunk("SEND_LOGIN_REQUEST", (data) => {
   return axios.post("/api/users/login", data).then((res) => res.data);
