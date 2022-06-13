@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../commons/CartItem";
 import { clearCart } from "../state/cart";
+import { Link } from "react-router-dom";
 
 const ShoppingCart = () => {
   const cart = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
   const [totalAmount, setTotalAmount] = useState(0);
+  const [virtualCart, setVirtualCart] = useState([]);
+  const dispatch = useDispatch();
 
   const cleanCart = () => {
     dispatch(clearCart())
@@ -18,12 +20,15 @@ const ShoppingCart = () => {
       setTotalAmount(
         cart.reduce((suma, item) => {
           return (suma += item.price);
-        }, 0)
-      );
+        }, 0));
     } else {
       setTotalAmount(0)
     }
+
+    cart.length && setVirtualCart(cart.filter((item, i) =>cart.indexOf(item) === i));
+    console.log("virtualCart",virtualCart);
   }, [cart]);
+  
 
   return (
     <>
@@ -39,8 +44,8 @@ const ShoppingCart = () => {
           <ul className="list-group list-group-flush">
             {" "}
             {/* style={{justifyContent:"start"}} */}
-            {cart.map((product) => (
-              <CartItem key={product.id} product={product} />
+            {virtualCart.map((product, index) => (
+              <CartItem key={"item-"+product.id+"-"+index} product={product} />
             ))}
           </ul>
         </div>
@@ -59,6 +64,11 @@ const ShoppingCart = () => {
           <div className="col-sm-5 d-flex align-items-center justify-content-end">
             <h4>{`TOTAL ${totalAmount}`}</h4>
           </div>
+
+          <Link to="/shopping-cart/check-out">
+            <button>GO CHECKOUT!</button>
+          </Link>
+
         </div>
       </div>
     </>
