@@ -16,15 +16,17 @@ export const logoutRequest = createAsyncThunk("SEND_LOGOUT_REQUEST", (data) => {
 
 export const setUser = createAsyncThunk("SET_USER", () => {
   const localUser = JSON.parse(localStorage.getItem("user"));
-  console.log('local user',localUser)
-  if (localUser != null)
-   { return axios
+
+  if (localUser != null) {
+    return axios
       .get("/api/users/me")
       .then((response) =>
         localUser.id === response.data.id ? localUser : null
       )
-      .catch((err) => console.log(err));}
-      else{ return null}
+      .catch((err) => console.log(err));
+  } else {
+    return null;
+  }
 });
 
 export const userReducer = createReducer(
@@ -34,6 +36,6 @@ export const userReducer = createReducer(
       localStorage.setItem("user", JSON.stringify(action.payload)),
     [setUser.fulfilled]: (state, action) => action.payload,
     [logoutRequest.fulfilled]: (state, action) =>
-      action.payload == "OK" && localStorage.setItem("user", null),
+      action.payload === "OK" && localStorage.setItem("user", null),
   }
 );

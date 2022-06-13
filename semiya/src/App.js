@@ -19,6 +19,8 @@ import { defaultProductRequest } from "./state/defaultProducts.js";
 import { updateFromStorage } from "./state/cart.js";
 import useLocalStorage from "./hooks/useLocalStorage";
 import { setUser } from "./state/user";
+import Profile from "./components/Profile";
+import Admin from "./components/Admin";
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -52,6 +54,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/admin" element={<Admin />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/404" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/404" />} />

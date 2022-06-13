@@ -7,8 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user= useSelector(state => state.user)
-
+  const user = useSelector((state) => state.user);
 
   const logoutHandler = (e) => {
     e.preventDefault();
@@ -22,7 +21,7 @@ const Header = () => {
     <nav className="prueba navbar navbar-expand-lg navbar-light bg-light ">
       <div className="container-fluid">
         <Link to="/" className="navbar-brand" href="#">
-          <img src={semilla} alt="card-horizontal-image" />
+          <img src={semilla} alt="card-horizontal" />
         </Link>
         <button
           className="navbar-toggler"
@@ -62,15 +61,18 @@ const Header = () => {
               </>
             ) : (
               <>
-              {user.name}
-              <a
-                onClick={logoutHandler}
-                className="nav-link active"
-                aria-current="page"
-                href="#"
+                <Link to="/profile" className="nav-link active" href="#">
+                  {user.name}
+                  {user.lastName}
+                </Link>
+                <a
+                  onClick={logoutHandler}
+                  className="nav-link active"
+                  aria-current="page"
+                  href="#"
                 >
-                Log Out
-              </a>
+                  Log Out
+                </a>
               </>
             )}
             <Link to="/shopping-cart" className="nav-link active" href="#">
