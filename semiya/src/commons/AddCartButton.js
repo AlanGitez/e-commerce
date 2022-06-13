@@ -8,9 +8,6 @@ const AddCartButton = ({ product }) => {
   const handlerClick = (e) => {
     e.preventDefault();
     dispatch(addToCart(product));
-    // console.log(typeof storageCart)
-    // const arr = storageCart.push(product)
-    // setStorageCart(Object.keys(storageCart).length ? [...storageCart, product]: [product]);
   };
 
   return (

@@ -1,0 +1,8 @@
+ALAN_11-06:
+// problemas con el login. tira unauthorized.
+// no entiendo la distribucion de columnas y filas en productlist y productitems
+// me parece que la organizacion del shopping-cart y cartItem es muy caotica, hay que acomodar bootstrap.
+
+CART: LOCALSTORAGE FUNCIONANDO.
+CART: SE PUEDE REMOVER DE A UN SOLO ELEMENTO DEL CARRITO
+CART: SE PUEDE LIMPIAR TODO EL CARRITO. 

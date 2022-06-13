@@ -16,34 +16,29 @@ import ForgotPassword from "./components/ForgotPassword.js";
 import Contact from "./components/Contact.js";
 import { useDispatch, useSelector } from "react-redux";
 import { defaultProductRequest } from "./state/defaultProducts.js";
-import { addToCart } from "./state/cart.js";
+import { updateFromStorage } from "./state/cart.js";
 import useLocalStorage from "./hooks/useLocalStorage";
-import axios from "axios";
 import { setUser } from "./state/user";
 
 function App() {
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
-  // const [storageCart, setStorageCart] =  useLocalStorage("cart", cart);
+  const [storageCart, setStorageCart] =  useLocalStorage("cart", cart);
   const [storageUser, setStorageUser] = useLocalStorage("user", "");
-  const dispach = useDispatch();
+  const dispatch = useDispatch();
 
+  
   useEffect(() => {
-    dispach(defaultProductRequest());
-    dispach(setUser())
+    dispatch(defaultProductRequest());
+    dispatch(setUser())
     user.id && setStorageUser(user.id);
+    !cart.length && dispatch(updateFromStorage());
   }, []);
 
-  // useEffect(() => {
+  useEffect(() => {
+    cart.length && setStorageCart(cart);
+  }, [cart]);
 
-  // }, [user])
-
-  // useEffect(() => {
-
-  //   if(!Object.keys(cart).length) setStorageCart([...storageCart], cart);
-  // }, [cart]);
-
-  console.log("my cart", cart);
 
   return (
     <>

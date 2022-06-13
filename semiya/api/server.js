@@ -57,6 +57,7 @@ passport.use(
   )
 );
 
+
 // How we save the user
 passport.serializeUser(function (user, done) {
   // console.log("Serialize User ejectuado")
