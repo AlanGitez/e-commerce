@@ -13,6 +13,7 @@ UsersRouter.post("/register", (req, res, next) => {
 
 UsersRouter.post("/login", passport.authenticate("local"), (req, res) => {
   console.log("Llego al back:", req.body);
+  
   req.login(req.user, function (err) {
     if (err) {
       return next(err);

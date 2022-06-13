@@ -15,8 +15,9 @@ const Login = () => {
   const loginHandler = (e) => {
     e.preventDefault();
     dispatch(loginRequest({email: email.value, password: password.value}))
-    // .then(()=> dispatch(setUser()))
-    .then(()=> navigate("/"));
+    .then(()=> dispatch(setUser()))
+    .then(()=> navigate("/"))
+    .catch(err => console.error(err));
   };
 
 

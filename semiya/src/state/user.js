@@ -20,8 +20,8 @@ export const setUser = createAsyncThunk("SET_USER", () => {
 
 export const userReducer = createReducer({},{ 
     // LA LINEA DE ABAJO ES USN PROBLEMA, POR QUE CUANDO SE CUMPLE LA PROMESA, NO SETEA EL USER EN EL ESTADO.
-    // [loginRequest.fulfilled]: (state, action) => localStorage.setItem("user", JSON.stringify(action.payload)),
-    [loginRequest.fulfilled]: (state, action) => action.payload,
+    [loginRequest.fulfilled]: (state, action) => localStorage.setItem("user", JSON.stringify(action.payload)),
+    // [loginRequest.fulfilled]: (state, action) => action.payload,
     [setUser.fulfilled]: (state, action) => action.payload,
     [logoutRequest.fulfilled]: (state, action) => action.payload == "OK" && localStorage.setItem("user", null),
   }
