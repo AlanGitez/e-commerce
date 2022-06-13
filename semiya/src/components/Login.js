@@ -16,13 +16,14 @@ const Login = () => {
     e.preventDefault();
     dispatch(loginRequest({email: email.value, password: password.value}))
     .then(()=> dispatch(setUser()))
-    .then(()=>navigate("/"));
+    .then(()=> navigate("/"))
+    .catch(err => console.error(err));
   };
 
 
   return (
     <>
-    <div className="container littleMargin">
+    <div className="container littleMargin justify-items-center">
       <h2>Welcome Back!</h2>
       <form onSubmit={loginHandler}>
         <div className="mb-3">

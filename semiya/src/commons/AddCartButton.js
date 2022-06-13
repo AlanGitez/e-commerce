@@ -4,18 +4,15 @@ import { addToCart } from '../state/cart';
 import useLocalStorage from "../hooks/useLocalStorage";
 
 const AddCartButton = ({product}) => {
-  const cart = useSelector(state => state.cart)
+  const cart = useSelector(state => state.cart);
   const [products, setProducts] = useState([]);
   const [storageCart, setStorageCart] = useLocalStorage("cart", [])  
   const dispatch = useDispatch();
 
-
-    const handlerClick = (e) => {
-        
-      e.preventDefault()
-      dispatch(addToCart(product))
-
-      };
+  const handlerClick = (e) => {
+    e.preventDefault();
+    dispatch(addToCart(product));
+  };
 
   return (
     <>
@@ -23,8 +20,7 @@ const AddCartButton = ({product}) => {
         type="button"
         disable={product.stock ? "false" : "true"}
         className="btn btn-success"
-        onClick={handlerClick}
-      >
+        onClick={handlerClick}>
         Add to Cart
       </button>
     </>

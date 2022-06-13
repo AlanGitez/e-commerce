@@ -1,0 +1,2 @@
+- ver promise all;
+- estudiar manejo de relaciones sequelize;

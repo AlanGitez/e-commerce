@@ -5,12 +5,12 @@ import useInput from "../hooks/useInput";
 
 const CartItem = ({ product }) => {
   const dispatch = useDispatch();
-  // const deleteSingleProduct = () => {
-  //   dispatch(deleteFromCart(product));
-  // };
   const quantity = useInput();
-  // const subTotal = useInput();
-  // console.log("Subtotal.value :", subTotal.value);
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    dispatch(deleteFromCart(product));
+  }
 
   return (
     <>
@@ -28,14 +28,24 @@ const CartItem = ({ product }) => {
             <strong>{product.name}</strong>
           </div>
           <div className="col-1" id={product.id}>
-            <input
+            {/* <input   ESTE ES EL QUE ESTABA ANTES DE QUE META MANO. Alan.-
               type="number"
               step={product.fraccionable ? 0.1 : 1}
               defaultValue={1}
               min={product.fraccionable ? 0.1 : 1}
               max={product.stock}
               onChange={quantity.onChange}
+            /> */}
+
+            <input 
+              type="number"
+              defaultValue={1}
+              step={product.fraccionable ? 0.1 : 1}
+              min={product.fraccionable ? 0.1 : 1}
+              max={product.stock}
+              onChange={quantity.onChange}
             />
+
           </div>
           <div className="col-3">
             <strong>
@@ -46,7 +56,7 @@ const CartItem = ({ product }) => {
             </strong>
           </div>
 
-          {/* <button className="delete"> del </button> */}
+          <button className="delete" onClick={handleDelete}> del </button>
         </div>
       </li>
     </>
