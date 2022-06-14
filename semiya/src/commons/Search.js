@@ -1,21 +1,22 @@
 import React from "react";
 import useInput from "../hooks/useInput";
-import { useDispatch } from "react-redux";
-import { filteredProductRequest } from "../state/filteredProducts";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { setWayToFilter } from "../state/wayToFilter";
 
 const Search = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const product = useInput();
-  // const category = useInput();
   const dispach = useDispatch();
+  const categories = useSelector((state) => state.defaultCategories);
 
   const submitHandler = (e) => {
-    console.log('esto funciona',  typeof product.value)
     e.preventDefault();
-    dispach(filteredProductRequest( product.value));
-    navigate("/products")
-  };
+    const nameQuery = { value: product.value, type: "name" };
+    product.value ?
+      dispach(setWayToFilter(nameQuery)):
+      alert('Por favor indique algun parametro de busqueda')
+    };
 
   return (
     <div className="container littleMargin">
@@ -26,7 +27,7 @@ const Search = () => {
             type="text"
             className="form-control"
             placeholder="What are you looking for?"
-            aria-label="Username"
+            aria-label="Product"
             aria-describedby="input-group-button-right"
           />
           <button
@@ -37,13 +38,18 @@ const Search = () => {
             Search
           </button>
         </div>
-        {/* Aca irian las categorias <select className="form-select" aria-label="Default select example">
-        <option {...category} selected>Categories</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select> */}
 
+        <select
+          className="form-select form-select-sm"
+          aria-label="Small select"
+        >
+          <option defaultValue="">Categories</option>
+          {categories.map((category, i) => (
+            <option onClick={()=>dispach(setWayToFilter({value:category.name, type:'category'}))} key={i} value={category.name}>
+              {category.name}
+            </option>
+          ))}
+        </select>
       </form>
     </div>
   );

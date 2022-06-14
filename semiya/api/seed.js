@@ -1,5 +1,6 @@
 // const faker=require('faker');
-const { Products } = require("./models");
+const { default: axios } = require("axios");
+const { Products, Categories } = require("./models");
 
 // const seed=()=>{
 //     const products=[];
@@ -821,7 +822,22 @@ const seed = [
 ];
 
 const seedFn = () => {
-  return Products.bulkCreate(seed);
+
+  const seedObj= seed.map((elem)=>{
+  const { categories } = elem;
+  const { name } = categories;
+  Categories.findOrCreate({
+    where: { name },
+  })
+    .then((data) => {
+      const category = data[0];
+      Products.create(elem)
+        .then((product) => product.setCategories(category))
+    })
+    .catch(err=> console.log(err));})
 };
 
+
+
 seedFn();
+

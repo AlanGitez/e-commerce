@@ -46,7 +46,7 @@ const Register = () => {
           />
         </div>
         <div className="form-container">
-          <label for="email" className="label">
+          <label htmlFor="email" className="label">
             Lastname
           </label>
           <input
@@ -57,14 +57,18 @@ const Register = () => {
             {...lastName}
           />
         </div>
+
         <div className="form-container">
-          <label for="email" className="label">
+          <label htmlFor="inputEmail" className="label">
+
             Email address
           </label>
           <input
             type="email"
+
             className="input input-email"
-            id="exampleInputEmail1"
+            id="inputEmail"
+
             placeholder="email@example.com"
             aria-describedby="emailHelp"
             {...email}
@@ -74,7 +78,7 @@ const Register = () => {
           )}
         </div>
         <div className="form-container">
-          <label for="email" className="label">
+          <label htmlFor="email" className="label">
             Password
           </label>
           <input
@@ -92,7 +96,7 @@ const Register = () => {
           )}
         </div>
         <div className="form-container">
-          <label for="password" class="label">
+          <label htmlFor="password" className="label">
             Address
           </label>
           <input

@@ -1,17 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteFromCart } from "../state/cart";
+import { addToCart, deleteFromCart, removeOne } from "../state/cart";
 import useInput from "../hooks/useInput";
+import { useSelector } from "react-redux";
 
 const CartItem = ({ product }) => {
+  const cart = useSelector(state => state.cart)
+  // const amount = cart.reduce((item, ac) => item.id == product.id && ac++)
+  const [quantity, setQuantity] = useState({amount: 1, trigger: ""});
   const dispatch = useDispatch();
-  const quantity = useInput();
-
+  // const quantity = useInput();
+  
   const handleDelete = (e) => {
     e.preventDefault();
     dispatch(deleteFromCart(product));
+    !cart.length && localStorage.removeItem("cart");
   }
+  
+  const increase = (e) => {
+    e.preventDefault();
+    setQuantity({amount: ++quantity.amount, trigger: "increase"});
+  };
+  
+  const decrease = (e) => {
+    e.preventDefault();
+      quantity.amount > 1 && setQuantity({amount: --quantity.amount, trigger: "decrease"});
+  };
 
+  useEffect(() => {
+    if(quantity.trigger == "increase"){
+      dispatch(addToCart(product));
+      setQuantity({amount: quantity.amount, trigger: ""})
+    }
+    if(quantity.trigger == "decrease"){
+        
+          dispatch(removeOne(product));
+          setQuantity({amount: quantity.amount, trigger: ""})
+        
+    }
+  }, [quantity])
+  
+  console.log(quantity);
   return (
     <>
       <li className="list-group-item">
@@ -37,22 +66,17 @@ const CartItem = ({ product }) => {
               onChange={quantity.onChange}
             /> */}
 
-            <input 
-              type="number"
-              defaultValue={1}
-              step={product.fraccionable ? 0.1 : 1}
-              min={product.fraccionable ? 0.1 : 1}
-              max={product.stock}
-              onChange={quantity.onChange}
-            />
+
+          <button onClick={increase}>+</button>
+          <p>{quantity.amount || 1}</p>
+          <button onClick={decrease}>-</button>
+            
 
           </div>
           <div className="col-3">
             <strong>
-              Subtotal ${" "}
-              {quantity.value
-                ? Math.round(product.price * quantity.value * 100) / 100
-                : product.price}{" "}
+              Subtotal ${product.price * quantity.amount || 0}
+              
             </strong>
           </div>
 

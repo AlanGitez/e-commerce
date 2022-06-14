@@ -8,14 +8,14 @@ import carrito from "../iconos/icon_shopping_cart.svg";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user= useSelector(state => state.user)
-
+  const user = useSelector((state) => state.user);
 
   const logoutHandler = (e) => {
     e.preventDefault();
     dispatch(logoutRequest())
       .then(() => dispatch(setUser()))
-      .then(() => navigate("/login"));
+      .then(() => navigate("/login"))
+      .catch(err=> console.log(err));
   };
 
   return (
@@ -29,19 +29,59 @@ const Header = () => {
           <li>
             <Link to="/">
               INICIO
+        </Link>
+//         <button
+//           className="navbar-toggler"
+//           type="button"
+//           data-bs-toggle="collapse"
+//           data-bs-target="#navbarNavAltMarkup"
+//           aria-controls="navbarNavAltMarkup"
+//           aria-expanded="false"
+//           aria-label="Toggle navigation"
+//         >
+//           <span className="navbar-toggler-icon"></span>
+//         </button>
+        <div className="collapse navbar-collapse show" id="navbarNavAltMarkup">
+          <div className="navbar-nav">
+            <Link
+              to="/products"
+              className="nav-link active"
+              aria-current="page"
+              href="#"
+            >
+              Productos
             </Link>
-
+            {!user ? (
+              <>
+                <Link
+                  to="/login"
+                  className="nav-link active"
+                  aria-current="page"
+                  href="#"
+                >
+                  Log In
+                </Link>
+                <Link to="/register" className="nav-link active" href="#">
+                  Register
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to={`/profile/${user.id}`} className="nav-link active" href="#">
+                  {user.name}
+                  {/* {user.lasName} */}
+                </Link>
+                <a
+                  onClick={logoutHandler}
+                  className="nav-link active"
+                  aria-current="page"
+                  href="#"
+                >
+                  Log Out
+                </a>
+              </>
+            )}
           </li>        
-          <li>
-              <Link to="/products" href="/">      
-                PRODUCTOS
-              </Link>
-          </li> 
-          <li>
-              <Link to="/shopping-cart" href="/">      
-                SHOPPING CART
-              </Link>
-          </li>
         </ul>  
       </div> 
       

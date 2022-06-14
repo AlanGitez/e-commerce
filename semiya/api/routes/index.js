@@ -6,7 +6,7 @@ const routerCategories = require("./categories");
 
 router.use('/products', routerProducts)
 router.use('/users', routerUsers)
-router.use('/cateogries', routerCategories)
+router.use('/categories', routerCategories)
 
 
 module.exports = router;
