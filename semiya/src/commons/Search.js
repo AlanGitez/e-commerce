@@ -1,28 +1,24 @@
 import React from "react";
 import useInput from "../hooks/useInput";
-import { useDispatch } from "react-redux";
-import { filteredProductRequest } from "../state/filteredProducts";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { setWayToFilter } from "../state/wayToFilter";
 
 const Search = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const product = useInput();
-  const category = useInput();
   const dispach = useDispatch();
-
+  const categories = useSelector((state) => state.defaultCategories);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const nameQuery= {value:product.value, type:'name'}
-    const categoryQuery= {value:category.value, type: 'category'}
-    product.value? 
-    (dispach(filteredProductRequest(nameQuery)))
-    :
-    (dispach(filteredProductRequest(categoryQuery)))
-    .then(navigate("/products"))
-    .catch(err=> console.log (err))
-  };
-
+    const nameQuery = { value: product.value, type: "name" };
+    product.value ?
+      dispach(setWayToFilter(nameQuery)):
+      alert('Por favor indique algun parametro de busqueda')
+    };
+    
+    
   return (
     <div className="container littleMargin">
       <form onSubmit={submitHandler}>
@@ -32,7 +28,7 @@ const Search = () => {
             type="text"
             className="form-control"
             placeholder="What are you looking for?"
-            aria-label="Username"
+            aria-label="Product"
             aria-describedby="input-group-button-right"
           />
           <button
@@ -43,16 +39,18 @@ const Search = () => {
             Search
           </button>
         </div>
-      
-       <select class="form-select form-select-sm" aria-label="Small select" {...category}>
-  <option selected="">Categories</option>
-  {/* Tomy: Aca iria un map de las diferentes categorias que seedemos */}
-  <option value="Lacteos">Lacteos</option>
-  <option value="Aceites">Aceites</option>
-  <option value="Frutos Secos">Frustos Secos</option>
-</select>
-      
 
+        <select
+          className="form-select form-select-sm"
+          aria-label="Small select"
+        >
+          <option defaultValue="">Categories</option>
+          {categories.map((category, i) => (
+            <option onClick={()=>dispach(setWayToFilter({value:category.name, type:'category'}))} key={i} value={category.name}>
+              {category.name}
+            </option>
+          ))}
+        </select>
       </form>
     </div>
   );
