@@ -14,6 +14,12 @@ const NewProduct = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log("🚀 ~ file: NewProduct.js ~ line 18 ~ submitHandler ~ name.value", name.value)
+    console.log("🚀 ~ file: NewProduct.js ~ line 20 ~ submitHandler ~ price.value", price.value)
+    console.log("🚀 ~ file: NewProduct.js ~ line 22 ~ submitHandler ~ stock.value", stock.value)
+    console.log("🚀 ~ file: NewProduct.js ~ line 24 ~ submitHandler ~ image.value", image.value)
+    console.log("🚀 ~ file: NewProduct.js ~ line 26 ~ submitHandler ~ user.value", user.value)
+    console.log()
   };
 
   return (
