@@ -61,9 +61,9 @@ const Header = () => {
               </>
             ) : (
               <>
-                <Link to="/profile" className="nav-link active" href="#">
+                <Link to={`/profile/${user.id}`} className="nav-link active" href="#">
                   {user.name}
-                  {user.lastName}
+                  {/* {user.lasName} */}
                 </Link>
                 <a
                   onClick={logoutHandler}
