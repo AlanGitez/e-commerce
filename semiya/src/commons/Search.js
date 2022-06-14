@@ -17,8 +17,7 @@ const Search = () => {
       dispach(setWayToFilter(nameQuery)):
       alert('Por favor indique algun parametro de busqueda')
     };
-    
-    
+
   return (
     <div className="container littleMargin">
       <form onSubmit={submitHandler}>

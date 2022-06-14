@@ -59,13 +59,13 @@ const Register = () => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">
+          <label htmlFor="inputEmail" className="form-label">
             Email address
           </label>
           <input
             type="email"
             className="form-control"
-            id="exampleInputEmail1"
+            id="inputEmail"
             placeholder="email@example.com"
             aria-describedby="emailHelp"
             {...email}

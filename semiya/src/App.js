@@ -21,6 +21,10 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import { setUser } from "./state/user";
 import Profile from "./components/Profile";
 import Admin from "./components/Admin";
+import NewProduct from "./components/Admin/NewProduct";
+import UpdateProduct from "./components/Admin/UpdateProduct";
+import NewCategory from "./components/Admin/NewCategory";
+import UpdateCategory from "./components/Admin/UpdateCategory";
 import { defaultCaqteogriesRequest } from "./state/defaultCategories";
 import { filteredProductRequest } from "./state/filteredProducts";
 import { filteredCategoryRequest } from "./state/filteredByCategory";
@@ -74,8 +78,12 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/admin" element={<Admin />} />
+          <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/profile/:id/admin" element={<Admin />} />
+          <Route path="/profile/:id/admin/new-product" element={<NewProduct />} />
+          <Route path="/profile/:id/admin/update-product" element={<UpdateProduct />} />
+          <Route path="/profile/:id/admin/new-category" element={<NewCategory />} />
+          <Route path="/profile/:id/admin/update-category" element={<UpdateCategory />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/404" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/404" />} />
