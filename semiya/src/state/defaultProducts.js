@@ -3,7 +3,7 @@ const axios = require("axios");
 
 export const defaultProductRequest = createAsyncThunk("SEND_FILTEREDPRODUCTS_REQUEST", () => {
     return(
-        axios.get(`/api/products`)
+        axios.get('/api/products')
         .then(res => res.data)
     )
 });
