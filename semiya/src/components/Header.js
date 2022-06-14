@@ -1,8 +1,9 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import semilla from "../assets/logosemiya.png";
+import semilla from "../iconos/logoSemiYa.svg";
 import { logoutRequest, setUser } from "../state/user";
 import { useDispatch, useSelector } from "react-redux";
+import carrito from "../iconos/icon_shopping_cart.svg";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -18,67 +19,57 @@ const Header = () => {
   };
 
   return (
-    <nav className="prueba navbar navbar-expand-lg navbar-light bg-light ">
-      <div className="container-fluid">
-        <Link to="/" className="navbar-brand" href="#">
-          <img src={semilla} alt="card-horizontal-image" />
-        </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse show" id="navbarNavAltMarkup">
-          <div className="navbar-nav">
-            {/* Falta la logica de si estas logeado, te muestre logout, y sino Log in y Sign In */}
-            <Link
-              to="/products"
-              className="nav-link active"
-              aria-current="page"
-              href="#"
-            >
-              Productos
+
+    <nav className="navbar-left ">
+            <div>
+        <ul>
+          <li>
+            <img src={semilla} alt="logo" class="logo"></img>
+          </li>
+          <li>
+            <Link to="/">
+              INICIO
             </Link>
-            {!user ? (
-              <>
-                <Link
-                  to="/login"
-                  className="nav-link active"
-                  aria-current="page"
-                  href="#"
-                >
-                  Log In
-                </Link>
-                <Link to="/register" className="nav-link active" href="#">
-                  Register
-                </Link>
-              </>
-            ) : (
-              <>
-              {user.name}
-              <a
-                onClick={logoutHandler}
-                className="nav-link active"
-                aria-current="page"
-                href="#"
-                >
-                Log Out
-              </a>
-              </>
-            )}
-            <Link to="/shopping-cart" className="nav-link active" href="#">
-              Shopping Cart
-            </Link>
-          </div>
+
+          </li>        
+          <li>
+              <Link to="/products" href="/">      
+                PRODUCTOS
+              </Link>
+          </li> 
+          <li>
+              <Link to="/shopping-cart" href="/">      
+                SHOPPING CART
+              </Link>
+          </li>
+        </ul>  
+      </div> 
+      
+      <div class="navbar-right">
+          <ul>
+          <li>
+              <Link to="/login" href="/">      
+                LOG IN
+              </Link>
+          </li>
+          <li>
+              <Link to="/register" href="/">      
+                REGISTER
+              </Link>
+          </li>   
+          <li class="navbar-shopping-cart">
+              <img src={carrito} alt="shopping cart"/>
+              <div>0</div>
+          </li>     
+            
+
+          </ul>
         </div>
-      </div>
-    </nav>
+
+      
+</nav>
+           
+  
   );
 };
 

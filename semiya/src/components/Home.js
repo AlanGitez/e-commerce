@@ -1,20 +1,55 @@
 import React from "react";
 import Navbar from "./Navbar";
 import { useSelector } from "react-redux";
+import Carousel from 'react-bootstrap/Carousel';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ProductItem from "../commons/ProductItem.js";
+
+
 
 const Home = () => {
   const user = useSelector((state) => state.user);
+  const filteredProducts = useSelector((state) => state.filteredProducts);
+  const defaultProducts = useSelector((state) => state.defaultProducts);
   return (
-    <div className="container">
-      <Navbar />
-      <img
-        src="https://d3ugyf2ht6aenh.cloudfront.net/stores/001/434/490/themes/amazonas/1-slide-1644085452723-3473521909-81615b49a5a0bbd88c886beae29894e61644085469-1920-1920.webp?1318798933
-"
-        className="img-fluid"
-        alt="img-fluid"
-      ></img>
-    </div>
+<>
+<Carousel>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="https://d3ugyf2ht6aenh.cloudfront.net/stores/001/040/363/themes/amazonas/1-slide-1654484019308-5275989191-d4729401c8c8884346b9558c789610d11654484055-1920-1920.webp?1691317929"
+      alt="Proba nuestros producto"
+    />
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="https://d3ugyf2ht6aenh.cloudfront.net/stores/001/040/363/themes/amazonas/1-slide-1654484081539-3315177195-ba9a0c7f006d65e841ccba16076752cf1654484087-1920-1920.webp?1691317929"
+      alt="Proba nuestros producto"
+    />
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="https://d3ugyf2ht6aenh.cloudfront.net/stores/001/040/363/themes/amazonas/1-slide-1654484110962-27093613-6fbaf3d3e884b240cd1468ff7e2b0bb11654484116-1920-1920.webp?1691317929"
+      alt="Proba nuestros producto"
+    />
+  </Carousel.Item>
+
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="https://d3ugyf2ht6aenh.cloudfront.net/stores/001/040/363/themes/amazonas/1-slide-1654484140488-4143274316-0a71cf2e174dbd11037bf3798ee54e361654484146-1920-1920.webp?1691317929"
+      alt="Proba nuestros productos"
+    />
+
+  </Carousel.Item>
+</Carousel>
+
+<Navbar/>
+ </>
   );
 };
+
 
 export default Home;
