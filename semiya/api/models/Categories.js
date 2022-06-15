@@ -7,7 +7,8 @@ class Categories extends s.Model{}
 Categories.init({
     name:{
         type: s.STRING,
-        allowNull: false
+        allowNull: false,
+        unique:true
     },
 }, {sequelize:db, modelName:"categories"});
 

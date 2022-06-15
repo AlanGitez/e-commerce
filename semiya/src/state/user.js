@@ -1,7 +1,6 @@
 import useLocalStorage from "../hooks/useLocalStorage";
-import { createAsyncThunk, createReducer }  from"@reduxjs/toolkit";
-import axios  from"axios";
-
+import { createAsyncThunk, createReducer } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export const loginRequest = createAsyncThunk("SEND_LOGIN_REQUEST", (data) => {
   return axios.post("/api/users/login", data).then((res) => {
@@ -13,6 +12,13 @@ export const loginRequest = createAsyncThunk("SEND_LOGIN_REQUEST", (data) => {
 export const logoutRequest = createAsyncThunk("SEND_LOGOUT_REQUEST", (data) => {
   return axios.post("/api/users/logout", data).then((res) => res.data);
 });
+
+export const promoteAdminRequest = createAsyncThunk(
+  "SEND_PROMOTION_REQUEST",
+  (data) => {
+    return axios.put("/api/users/promote", data).then((res) => res.data);
+  }
+);
 
 export const setUser = createAsyncThunk("SET_USER", () => {
   const localUser = JSON.parse(localStorage.getItem("user"));
@@ -37,5 +43,7 @@ export const userReducer = createReducer(
     [setUser.fulfilled]: (state, action) => action.payload,
     [logoutRequest.fulfilled]: (state, action) =>
       action.payload === "OK" && localStorage.setItem("user", null),
+    [promoteAdminRequest.fulfilled]: (state, action) =>
+      localStorage.setItem("user", JSON.stringify(action.payload)),
   }
 );

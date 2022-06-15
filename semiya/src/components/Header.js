@@ -1,8 +1,9 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import semilla from "../assets/logosemiya.png";
+import semilla from "../iconos/logoSemiYa.svg";
 import { logoutRequest, setUser } from "../state/user";
 import { useDispatch, useSelector } from "react-redux";
+import carrito from "../iconos/icon_shopping_cart.svg";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -14,72 +15,62 @@ const Header = () => {
     dispatch(logoutRequest())
       .then(() => dispatch(setUser()))
       .then(() => navigate("/login"))
-      .catch(err=> console.log(err));
+      .catch((err) => console.log(err));
   };
 
   return (
-    <nav className="prueba navbar navbar-expand-lg navbar-light bg-light ">
-      <div className="container-fluid">
-        <Link to="/" className="navbar-brand" href="#">
-          <img src={semilla} alt="card-horizontal" />
-        </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse show" id="navbarNavAltMarkup">
-          <div className="navbar-nav">
-            {/* Falta la logica de si estas logeado, te muestre logout, y sino Log in y Sign In */}
-            <Link
-              to="/products"
-              className="nav-link active"
-              aria-current="page"
-              href="#"
-            >
-              Productos
+    <nav>
+      <div className="navbar-left ">
+        <ul>
+          <Link to="/">
+            <li>
+              <img src={semilla} alt="logo" className="logo"></img>
+            </li>
+          </Link>
+          <li>
+            <Link to="/products" aria-current="page" href="#">
+              PRODUCTS
             </Link>
-            {!user ? (
-              <>
-                <Link
-                  to="/login"
-                  className="nav-link active"
-                  aria-current="page"
-                  href="#"
-                >
-                  Log In
+          </li>
+        </ul>
+      </div>
+      <div className="navbar-right">
+        <ul>
+          {!user ? (
+            <>
+              <li>
+                <Link to="/login" aria-current="page" href="#">
+                  LOG IN
                 </Link>
-                <Link to="/register" className="nav-link active" href="#">
-                  Register
+              </li>
+              <li>
+                <Link to="/register" href="#">
+                  REGISTER
                 </Link>
-              </>
-            ) : (
-              <>
-                <Link to="/profile" className="nav-link active" href="#">
-                  {user.name}
-                  {user.lastName}
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to={`/profile/${user.id}`} href="#">
+                  {user.name.toUpperCase()}
+                  {/* {user.lasName} */}
                 </Link>
-                <a
-                  onClick={logoutHandler}
-                  className="nav-link active"
-                  aria-current="page"
-                  href="#"
-                >
-                  Log Out
+              </li>
+              <li>
+                <a onClick={logoutHandler} aria-current="page" href="#">
+                  LOG OUT
                 </a>
-              </>
-            )}
-            <Link to="/shopping-cart" className="nav-link active" href="#">
-              Shopping Cart
+              </li>
+            </>
+          )}
+          <li className="navbar-shopping-cart">
+            <Link to="/shopping-cart">
+              <img src={carrito} alt="shopping cart" />
+              <div>0</div>
             </Link>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </nav>
   );

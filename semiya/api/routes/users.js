@@ -38,9 +38,9 @@ UsersRouter.put("/update/:id", (req, res, next) => {
     .catch(next);
 });
 
-UsersRouter.put("/promote/:id", (req, res, next) => {
-  const id = req.params.id;
-  Users.update({ type: "admin" }, { where: { id }, returning: true })
+UsersRouter.put("/promote", (req, res, next) => {
+  const {id} = req.body
+  Users.update({ type: "admin" }, { where: { id:id }, returning: true })
     .then(([affectedRows, user]) => {
       res.send(user[0]);
     })
