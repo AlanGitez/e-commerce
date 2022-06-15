@@ -3,32 +3,37 @@ import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../commons/CartItem";
 import { clearCart } from "../state/cart";
 import { Link } from "react-router-dom";
+import { totalAmount } from "../state/totalAmount";
 
 const ShoppingCart = () => {
   const cart = useSelector((state) => state.cart);
-  const [totalAmount, setTotalAmount] = useState(0);
+  const totalAmount1 = useSelector((state) => state.totalAmount);
+  // const [totalAmount2, setTotalAmount2] = useState(0);
   const [virtualCart, setVirtualCart] = useState([]);
   const dispatch = useDispatch();
 
   const cleanCart = () => {
-    dispatch(clearCart())
-    localStorage.removeItem('cart')
+    dispatch(clearCart());
+    localStorage.removeItem("cart");
   };
 
   useEffect(() => {
     if (cart.length !== 0) {
-      setTotalAmount(
-        cart.reduce((suma, item) => {
-          return (suma += item.price);
-        }, 0));
+      dispatch(
+        totalAmount(
+          cart.reduce((suma, item) => {
+            return (suma += item.price);
+          }, 0)
+        )
+      );
     } else {
-      setTotalAmount(0)
+      dispatch(totalAmount(0));
     }
+    // dispatch(totalAmount(totalAmount2))
 
-    cart.length && setVirtualCart(cart.filter((item, i) =>cart.indexOf(item) === i));
-    console.log("virtualCart",virtualCart);
+    cart.length &&
+      setVirtualCart(cart.filter((item, i) => cart.indexOf(item) === i));
   }, [cart]);
-  
 
   return (
     <>
@@ -45,7 +50,10 @@ const ShoppingCart = () => {
             {" "}
             {/* style={{justifyContent:"start"}} */}
             {virtualCart.map((product, index) => (
-              <CartItem key={"item-"+product.id+"-"+index} product={product} />
+              <CartItem
+                key={"item-" + product.id + "-" + index}
+                product={product}
+              />
             ))}
           </ul>
         </div>
@@ -62,13 +70,12 @@ const ShoppingCart = () => {
           </div>
 
           <div className="col-sm-5 d-flex align-items-center justify-content-end">
-            <h4>{`TOTAL ${totalAmount}`}</h4>
+            <h4>{`TOTAL ${totalAmount1}`}</h4>
           </div>
 
           <Link to="/shopping-cart/check-out">
-            <button>GO CHECKOUT!</button>
+            <button className="btn btn-success">GO CHECKOUT!</button>
           </Link>
-
         </div>
       </div>
     </>

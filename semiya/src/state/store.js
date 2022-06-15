@@ -5,6 +5,7 @@ import { defaultProductReducer } from "./defaultProducts";
 import { filteredProductReducer } from "./filteredProducts";
 import { singleProductReducer } from "./singleProduct";
 import { userReducer } from "./user";
+import { totalReducer } from "./totalAmount";
 
 const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
@@ -14,8 +15,8 @@ const store = configureStore({
     filteredProducts: filteredProductReducer,
     singleProduct: singleProductReducer,
     cart: cartReducer,
+    totalAmount: totalReducer,
   },
-
 });
 
 export default store;
