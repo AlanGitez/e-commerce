@@ -4,28 +4,25 @@ import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginRequest, setUser } from "../state/user";
 
-
-
 const Login = () => {
   const navigate = useNavigate();
   const email = useInput();
   const password = useInput();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const loginHandler = (e) => {
     e.preventDefault();
-    dispatch(loginRequest({email: email.value, password: password.value}))
-    .then(()=> dispatch(setUser()))
-    .then(()=> navigate("/"))
-    .catch(err => console.error(err));
+    dispatch(loginRequest({ email: email.value, password: password.value }))
+      .then(() => dispatch(setUser()))
+      .then(() => navigate("/"))
+      .catch((err) => console.error(err));
   };
-
 
   return (
     <>
-    <div className="login">
-      <form className="form" onSubmit={loginHandler}>
-        <h2 >Welcome Back!</h2>
+      <div className="login">
+        <form className="form" onSubmit={loginHandler}>
+          <h2>Welcome Back!</h2>
           <div className="form-container">
             <label for="email" className="label">
               Email address
@@ -34,12 +31,12 @@ const Login = () => {
               type="text"
               id="inputemail"
               placeholder="email@example.com"
-              class="input input-email"
+              className="input input-email"
               {...email}
-              />
+            />
           </div>
           <div className="form-container">
-            <label for="password" class="label">
+            <label for="password" className="label">
               Password
             </label>
             <input
@@ -48,7 +45,7 @@ const Login = () => {
               placeholder="Password"
               id="inputPassword"
               {...password}
-              />
+            />
           </div>
           {/* Descomentar esto para cuando tengamos a mano la persistencia */}
           {/* <div className="form-check mb-3">
@@ -60,17 +57,14 @@ const Login = () => {
           <button type="submit" className="primary-button signup-button">
             Log In
           </button>
-          <Link to="/ForgotPassword">
-          <p>Forgot Password?</p>
-        </Link>
-        <button type="submit" className="secondary-button signup-button">
-            <Link to="/Register">
-              Register
-            </Link>
-        </button>
-      </form>
-        
-        
+          {/* Descomentar esto para cuando tengamos a mano la persistencia */}
+          {/* <Link to="/ForgotPassword">
+            <p>Forgot Password?</p>
+          </Link> */}
+          <button type="submit" className="secondary-button signup-button">
+            <Link to="/Register">Register</Link>
+          </button>
+        </form>
       </div>
     </>
   );
