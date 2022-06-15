@@ -34,7 +34,7 @@ const Register = () => {
       <form  className="form" onSubmit={loginHandler}>
       <h2>Hello New User!</h2>
         <div className="form-container">
-          <label for="email" className="label">
+          <label htmlFor="email" className="label">
             Name
           </label>
           <input
@@ -119,7 +119,7 @@ const Register = () => {
           </button>
         )}
         </div>        
-        <p>Are you already logged in?</p>
+        <p>Are you already a user?</p>
 
         <button type="submit" className="secondary-button signup-button">
           <Link to="/Login">

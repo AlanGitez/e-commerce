@@ -53,7 +53,7 @@ const Header = () => {
             <>
               <li>
                 <Link to={`/profile/${user.id}`} href="#">
-                  {user.name.toUpperCase()}
+                  {user.name?.toUpperCase()}
                   {/* {user.lasName} */}
                 </Link>
               </li>

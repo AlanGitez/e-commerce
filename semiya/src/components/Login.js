@@ -24,7 +24,7 @@ const Login = () => {
         <form className="form" onSubmit={loginHandler}>
           <h2>Welcome Back!</h2>
           <div className="form-container">
-            <label for="email" className="label">
+            <label htmlFor="email" className="label">
               Email address
             </label>
             <input
@@ -36,7 +36,7 @@ const Login = () => {
             />
           </div>
           <div className="form-container">
-            <label for="password" className="label">
+            <label htmlFor="password" className="label">
               Password
             </label>
             <input

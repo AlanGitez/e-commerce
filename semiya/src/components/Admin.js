@@ -54,19 +54,48 @@ const Admin = () => {
         </>
       ) : (
         <>
+        <h3>Admin</h3>
+              <Link to={`/profile/${user.id}`}>
+                <button className="btn btn-success littleMargin">
+                  Back to Profile
+                </button>
+              </Link>
+
           <div className="container">
-            <Link to="new-product">
-              <button className="btn btn-success littleMargin">+ Products</button>
-            </Link>
-            <Link to="update-product">
-              <button className="btn btn-success littleMargin">🛠 Products</button>
-            </Link>
-            <Link to="new-category">
-              <button className="btn btn-success littleMargin">+ Categories</button>
-            </Link>
-            <Link to="update-category">
-              <button className="btn btn-success littleMargin">🛠 Categories</button>
-            </Link>
+            <div className="container">
+              <Link to="new-product">
+                <button className="btn btn-success littleMargin">
+                  + Products
+                </button>
+              </Link>
+              <Link to="update-product">
+                <button className="btn btn-warning littleMargin">
+                  🛠 Products
+                </button>
+              </Link>
+              <Link to="delete-product">
+                <button className="btn btn-danger littleMargin">
+                  🗑 Products
+                </button>
+              </Link>
+            </div>
+            <div className="container">
+              <Link to="new-category">
+                <button className="btn btn-success littleMargin">
+                  + Categories
+                </button>
+              </Link>
+              <Link to="update-category">
+                <button className="btn btn-warning littleMargin">
+                  🛠 Categories
+                </button>
+              </Link>
+              <Link to="delete-category">
+                <button className="btn btn-danger littleMargin">
+                  🗑 Categories
+                </button>
+              </Link>
+            </div>
           </div>
         </>
       )}

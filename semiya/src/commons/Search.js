@@ -7,14 +7,14 @@ import { setWayToFilter } from "../state/wayToFilter";
 const Search = () => {
   const navigate = useNavigate();
   const product = useInput();
-  const dispach = useDispatch();
+  const dispatch = useDispatch();
   const categories = useSelector((state) => state.defaultCategories);
 
   const submitHandler = (e) => {
     e.preventDefault();
     const nameQuery = { value: product.value, type: "name" };
     product.value ?
-      dispach(setWayToFilter(nameQuery)):
+      dispatch(setWayToFilter(nameQuery)):
       alert('Por favor indique algun parametro de busqueda')
     };
 
@@ -45,7 +45,7 @@ const Search = () => {
         >
           <option defaultValue="">Categories</option>
           {categories.map((category, i) => (
-            <option onClick={()=>dispach(setWayToFilter({value:category.name, type:'category'}))} key={i} value={category.name}>
+            <option onClick={()=>dispatch(setWayToFilter({value:category.name, type:'category'}))} key={i} value={category.name}>
               {category.name}
             </option>
           ))}

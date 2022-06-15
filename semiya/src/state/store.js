@@ -9,6 +9,7 @@ import { renderedProductsReducer } from "./renderedProducts";
 import { singleProductReducer } from "./singleProduct";
 import { userReducer } from "./user";
 import { setWayToFilterReducer } from "./wayToFilter";
+import { totalReducer } from "./totalAmount";
 
 const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
@@ -19,8 +20,8 @@ const store = configureStore({
     filteredProducts: filteredProductReducer,
     filteredByCategory: filteredCategoryReducer,
     singleProduct: singleProductReducer,
-    wayToFilter:setWayToFilterReducer,
-    renderedProducts:renderedProductsReducer,
+    wayToFilter: setWayToFilterReducer,
+    renderedProducts: renderedProductsReducer,
     cart: cartReducer,
     totalAmount: totalReducer,
   },

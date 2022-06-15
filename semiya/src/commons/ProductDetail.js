@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useInput from "../hooks/useInput";
 import axios from 'axios'
 import {useParams} from 'react-router'
+import { Link } from "react-router-dom";
 import { singleProductRequest } from "../state/singleProduct";
 import Navbar from "../components/Navbar";
 import AddCartButton from "./AddCartButton";
@@ -10,21 +11,21 @@ import AddCartButton from "./AddCartButton";
 const ProductDetail = () => {
   const newReview = useInput();
   const { id } = useParams();
-  const dispach = useDispatch();
+  const dispatch = useDispatch();
   const singleProduct = useSelector((state) => state.singleProduct);
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    dispach(singleProductRequest(id));
-    console.log(singleProduct);
+    dispatch(singleProductRequest(id));
   }, []);
 
   //falta direccion de axios
-  const handleClick = () => {
-    axios
-      .put("", newReview.value)
-      .then((result) => alert("Thank you, we love to hear what you think!"))
-      .catch((err) => console.log(err));
-  };
+  // const handleClick = () => {
+  //   axios
+  //     .put("", newReview.value)
+  //     .then(() => alert("Thank you, we love to hear what you think!"))
+  //     .catch((err) => console.log(err));
+  // };
 
   return (
     <>
@@ -46,9 +47,22 @@ const ProductDetail = () => {
               <p className="card-text">{singleProduct.description}</p>
               <p className="card-text">$:{singleProduct.price}</p>
               <AddCartButton product={singleProduct} />
+
+              {user.type === "admin" && (
+                <>
+                <p className="card-text">{`Stock: ${singleProduct.stock}`}</p>
+                {<Link to="/profile/:id/admin/update-product">
+                    <button className="btn btn-success littleMargin">
+                      🛠 Product
+                    </button>
+                  </Link>}
+                </>
+            )}
+            {!user.type && (
               <p className="card-text">
                 {singleProduct.stock ? "Hay Stock" : "No contamos con Stock"}
               </p>
+            )}
               {/* COMENTADO XQ NO SABEMOS SI VIENE COMO ARRAY
             {singleProduct.reviews.length && (
               <>
