@@ -1,9 +1,10 @@
 import React from "react";
 import useInput from "../hooks/useInput";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import useEmailValidity from "../hooks/useEmailValidity";
 import usePasswordValidity from "../hooks/usePasswordValidity";
+
 
 const Register = () => {
   const name = useInput();
@@ -28,44 +29,46 @@ const Register = () => {
         .catch((error) => console.log("Register/Axios error: ", error));
   };
 
-  return (
-    <div className="container littleMargin">
+  return (    
+    <div className="login">
+      <form  className="form" onSubmit={loginHandler}>
       <h2>Hello New User!</h2>
-      <form onSubmit={loginHandler}>
-        <div className="mb-3">
-          <label htmlFor="inputName" className="form-label">
+        <div className="form-container">
+          <label for="email" className="label">
             Name
           </label>
           <input
             type="text"
-            className="form-control"
+            className="input input-email"
             id="inputName"
             placeholder="Name"
-            aria-describedby="nameHelp"
             {...name}
           />
         </div>
-        <div className="mb-3">
-          <label htmlFor="inputLastName" className="form-label">
+        <div className="form-container">
+          <label htmlFor="email" className="label">
             Lastname
           </label>
           <input
             type="text"
-            className="form-control"
+            className="input input-email"
             id="inputLastName"
             placeholder="LastName"
-            aria-describedby="lastNameHelp"
             {...lastName}
           />
         </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">
+
+        <div className="form-container">
+          <label htmlFor="inputEmail" className="label">
+
             Email address
           </label>
           <input
             type="email"
-            className="form-control"
-            id="exampleInputEmail1"
+
+            className="input input-email"
+            id="inputEmail"
+
             placeholder="email@example.com"
             aria-describedby="emailHelp"
             {...email}
@@ -74,13 +77,13 @@ const Register = () => {
             <p style={{ color: "red", fontWeight: "bolder" }}>Invalid email</p>
           )}
         </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">
+        <div className="form-container">
+          <label htmlFor="email" className="label">
             Password
           </label>
           <input
             type="password"
-            className="form-control"
+            className="input input-email"
             placeholder="Password"
             id="exampleInputPassword1"
             {...password}
@@ -92,29 +95,41 @@ const Register = () => {
             </p>
           )}
         </div>
-        <div className="mb-3">
-          <label htmlFor="inputAddress" className="form-label">
+        <div className="form-container">
+          <label htmlFor="password" className="label">
             Address
           </label>
           <input
             type="text"
-            className="form-control"
-            id="inputAddress"
+            className="input input-email"
+            id="inputadress"
             placeholder="Address"
             aria-describedby="addressHelp"
             {...address}
           />
-        </div>
+        </div >
+        <div className="form-container">
         {email.value.length && password.value.length ? (
-          <button type="submit" className="btn btn-primary">
-            Register
+          <button type="submit" className="primary-button signup-button">
+              Register           
           </button>
         ) : (
-          <button type="submit" className="btn btn-primary" disabled={true}>
+          <button type="submit" className="primary-button signup-button" disabled={true}>
             Register
           </button>
         )}
+        </div>        
+        <p>Are you already logged in?</p>
+
+        <button type="submit" className="secondary-button signup-button">
+          <Link to="/Login">
+              Log In
+            </Link>
+        </button>             
       </form>
+      
+        
+      
     </div>
   );
 };

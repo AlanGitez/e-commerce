@@ -20,29 +20,28 @@ const Login = () => {
 
   return (
     <>
-      <div className="container littleMargin justify-items-center">
-        <h2>Welcome Back!</h2>
-        <form onSubmit={loginHandler}>
-          <div className="mb-3">
-            <label htmlFor="inputEmail" className="form-label">
+      <div className="login">
+        <form className="form" onSubmit={loginHandler}>
+          <h2>Welcome Back!</h2>
+          <div className="form-container">
+            <label for="email" className="label">
               Email address
             </label>
             <input
-              type="email"
-              className="form-control"
-              id="inputEmail"
+              type="text"
+              id="inputemail"
               placeholder="email@example.com"
-              aria-describedby="emailHelp"
+              className="input input-email"
               {...email}
             />
           </div>
-          <div className="mb-3">
-            <label htmlFor="inputPassword" className="form-label">
+          <div className="form-container">
+            <label for="password" className="label">
               Password
             </label>
             <input
               type="password"
-              className="form-control"
+              className="input input-password"
               placeholder="Password"
               id="inputPassword"
               {...password}
@@ -50,18 +49,22 @@ const Login = () => {
           </div>
           {/* Descomentar esto para cuando tengamos a mano la persistencia */}
           {/* <div className="form-check mb-3">
-          <label className="form-check-label">
-          <input className="form-check-input" type="checkbox" name="remember" />{" "}
-          Remember me
-          </label>
-        </div> */}
-          <button type="submit" className="btn btn-primary">
+            <label className="form-check-label">
+            <input className="form-check-input" type="checkbox" name="remember" />{" "}
+            Remember me
+            </label>
+          </div> */}
+          <button type="submit" className="primary-button signup-button">
             Log In
           </button>
+          {/* Descomentar esto para cuando tengamos a mano la persistencia */}
+          {/* <Link to="/ForgotPassword">
+            <p>Forgot Password?</p>
+          </Link> */}
+          <button type="submit" className="secondary-button signup-button">
+            <Link to="/Register">Register</Link>
+          </button>
         </form>
-        <Link to="/forgot-password">
-          <p>Forgot Password?</p>
-        </Link>
       </div>
     </>
   );

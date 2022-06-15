@@ -24,6 +24,7 @@
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
     "react": "^18.1.0",
+    "react-bootstrap": "^2.4.0",
     "react-dom": "^18.1.0",
     "react-redux": "^8.0.2",
     "react-router": "^6.3.0",
@@ -33,6 +34,7 @@
     "redux-logger": "^3.0.6",
     "sequelize": "^6.20.1",
     "volleyball": "^1.5.1",
+    "watch": "^1.0.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -64,6 +66,10 @@
   },
   "devDependencies": {
     "babel-plugin-import": "^1.13.3",
-    "concurrently": "^6.0.0"
+    "concurrently": "^6.0.0",
+    "css-loader": "^6.7.1",
+    "mini-css-extract-plugin": "^2.6.0",
+    "sass": "^1.52.3",
+    "style-loader": "^3.3.1"
   }
 }

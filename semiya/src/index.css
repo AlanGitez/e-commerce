@@ -1,3 +1,4 @@
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -26,37 +27,6 @@ label{
   margin: 0.75em;
 }
 
-#root {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-#footer {
-  margin-top: auto;
-}
-
-.image-checkout {
-  background-size: cover;
-  background-position: center center;
-}
-
-.card-checkout {
-  text-align: left;
-}
-
-.margin {
-  padding-bottom: 10px;
-}
-
-.imgMauro {
-  width: 150px;
-  height: 150px;
-  padding: 5px;
-  margin-left: auto;
-  margin-right: auto;
-}
-/* 
 :root {
   --white: #FFFFFF;
   --black: #000000;
@@ -84,13 +54,10 @@ body {
   width: 300px;
 }
 .logo {
-  width: 150px;
+  width: 180px;
      
 }
-.logo-loging{
-  width: 150px;
-  text-align: center;
-}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -123,6 +90,53 @@ body {
   font-size: var(--lg);
   margin-bottom: 12px;
   text-align: center;
+}
+.product-detail {
+  width: 360px;
+  padding-bottom: 24px;
+  position: absolute;
+  right: 0;
+}
+.product-detail-close {
+  background: var(--white);
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 2;
+  padding: 12px;
+  border-radius: 50%;
+}
+.product-detail-close:hover {
+  cursor: pointer;
+}
+.product-detail > img:nth-child(2) {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 0 0 20px 20px;
+}
+.product-info {
+  margin: 24px 24px 0 24px;
+}
+.product-info p:nth-child(1) {
+  font-weight: bold;
+  font-size: var(--md);
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+.product-info p:nth-child(2) {
+  color: var(--grey);
+  font-size: var(--md);
+  margin-top: 0;
+  margin-bottom: 36px;
+}
+.product-info p:nth-child(3) {
+  color: var(--grey);
+  font-size: var(--sm);
+  margin-top: 0;
+  margin-bottom: 36px;
 }
 .primary-button {
   background-color: var(--green);
@@ -224,4 +238,5 @@ nav {
   .logo {
     display: block;
   }
-} */
+}
+   
