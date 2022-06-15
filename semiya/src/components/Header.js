@@ -4,6 +4,7 @@ import semilla from "../iconos/logoSemiYa.svg";
 import { logoutRequest, setUser } from "../state/user";
 import { useDispatch, useSelector } from "react-redux";
 import carrito from "../iconos/icon_shopping_cart.svg";
+import { setWayToFilter } from "../state/wayToFilter";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -17,6 +18,10 @@ const Header = () => {
       .then(() => navigate("/login"))
       .catch((err) => console.log(err));
   };
+  
+  const productHandler= ()=>{
+    dispatch(setWayToFilter({type:null}))
+  }
 
   return (
     <nav>
@@ -28,7 +33,7 @@ const Header = () => {
             </li>
           </Link>
           <li>
-            <Link to="/products" aria-current="page" href="#">
+            <Link to="/products" onClick={productHandler} aria-current="page" href="#">
               PRODUCTS
             </Link>
           </li>

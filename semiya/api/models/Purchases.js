@@ -4,7 +4,11 @@ const db = require("../db");
 class Purchases extends s.Model{}
 
 Purchases.init({
-    amount:{
+    cart:{
+        type:s.ARRAY(s.JSON),
+        allowNull: false,
+    },
+    totalAmount:{
         type: s.FLOAT,
         allowNull: false
     },
