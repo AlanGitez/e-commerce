@@ -58,6 +58,10 @@ function App() {
       dispatch(filteredCategoryRequest()).then(() =>
         dispatch(renderedProducts())
       );
+    wayToFilter.type === null &&
+      dispatch(filteredCategoryRequest()).then(() =>
+        dispatch(renderedProducts())
+      );
     // navigate(`/products?${wayToFilter.type}=${wayToFilter.value}`);
   }, [wayToFilter]);
 
