@@ -15,101 +15,64 @@ const Header = () => {
     dispatch(logoutRequest())
       .then(() => dispatch(setUser()))
       .then(() => navigate("/login"))
-      .catch(err=> console.log(err));
+      .catch((err) => console.log(err));
   };
 
   return (
-
-    <nav className="navbar-left ">
-            <div>
+    <nav>
+      <div className="navbar-left ">
         <ul>
+          <Link to="/">
+            <li>
+              <img src={semilla} alt="logo" className="logo"></img>
+            </li>
+          </Link>
           <li>
-            <img src={semilla} alt="logo" class="logo"></img>
-          </li>
-          <li>
-            <Link to="/">
-              INICIO
-        </Link>
-//         <button
-//           className="navbar-toggler"
-//           type="button"
-//           data-bs-toggle="collapse"
-//           data-bs-target="#navbarNavAltMarkup"
-//           aria-controls="navbarNavAltMarkup"
-//           aria-expanded="false"
-//           aria-label="Toggle navigation"
-//         >
-//           <span className="navbar-toggler-icon"></span>
-//         </button>
-        <div className="collapse navbar-collapse show" id="navbarNavAltMarkup">
-          <div className="navbar-nav">
-            <Link
-              to="/products"
-              className="nav-link active"
-              aria-current="page"
-              href="#"
-            >
-              Productos
+            <Link to="/products" aria-current="page" href="#">
+              PRODUCTS
             </Link>
-            {!user ? (
-              <>
-                <Link
-                  to="/login"
-                  className="nav-link active"
-                  aria-current="page"
-                  href="#"
-                >
-                  Log In
+          </li>
+        </ul>
+      </div>
+      <div className="navbar-right">
+        <ul>
+          {!user ? (
+            <>
+              <li>
+                <Link to="/login" aria-current="page" href="#">
+                  LOG IN
                 </Link>
-                <Link to="/register" className="nav-link active" href="#">
-                  Register
+              </li>
+              <li>
+                <Link to="/register" href="#">
+                  REGISTER
                 </Link>
-              </>
-            ) : (
-              <>
-                <Link to={`/profile/${user.id}`} className="nav-link active" href="#">
-                  {user.name}
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to={`/profile/${user.id}`} href="#">
+                  {user.name.toUpperCase()}
                   {/* {user.lasName} */}
                 </Link>
-                <a
-                  onClick={logoutHandler}
-                  className="nav-link active"
-                  aria-current="page"
-                  href="#"
-                >
-                  Log Out
+              </li>
+              <li>
+                <a onClick={logoutHandler} aria-current="page" href="#">
+                  LOG OUT
                 </a>
-              </>
-            )}
-          </li>        
-        </ul>  
-      </div> 
-      
-      <div class="navbar-right">
-          <ul>
-          <li>
-              <Link to="/login" href="/">      
-                LOG IN
-              </Link>
-          </li>
-          <li>
-              <Link to="/register" href="/">      
-                REGISTER
-              </Link>
-          </li>   
-          <li class="navbar-shopping-cart">
-              <img src={carrito} alt="shopping cart"/>
+              </li>
+            </>
+          )}
+          <li className="navbar-shopping-cart">
+            <Link to="/shopping-cart">
+              <img src={carrito} alt="shopping cart" />
               <div>0</div>
-          </li>     
-            
-
-          </ul>
-        </div>
-
-      
-</nav>
-           
-  
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </nav>
   );
 };
 
