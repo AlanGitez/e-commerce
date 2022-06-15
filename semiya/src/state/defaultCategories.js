@@ -2,7 +2,7 @@ const { createAsyncThunk, createReducer } = require("@reduxjs/toolkit");
 const axios = require("axios");
 
 
-export const defaultCaqteogriesRequest = createAsyncThunk("SEND_ALLCATEGORIES_REQUEST", () => {
+export const defaultCategoriesRequest = createAsyncThunk("SEND_ALLCATEGORIES_REQUEST", () => {
     return(
         axios.get('/api/categories')
         .then(res => res.data)
@@ -10,5 +10,5 @@ export const defaultCaqteogriesRequest = createAsyncThunk("SEND_ALLCATEGORIES_RE
 });
 
 export const defaultCategoriesReducer = createReducer([], {
-    [defaultCaqteogriesRequest.fulfilled]:(state,action) => action.payload
+    [defaultCategoriesRequest.fulfilled]:(state,action) => action.payload
 });

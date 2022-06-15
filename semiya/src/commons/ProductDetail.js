@@ -6,6 +6,7 @@ import {useParams} from 'react-router'
 import { singleProductRequest } from "../state/singleProduct";
 import Navbar from "../components/Navbar";
 import AddCartButton from "./AddCartButton";
+import { textAreaSubmitEvent } from "../utils/utils";
 
 const ProductDetail = () => {
   const newReview = useInput();
@@ -18,10 +19,10 @@ const ProductDetail = () => {
     console.log(singleProduct);
   }, []);
 
-  //falta direccion de axios
-  const handleClick = () => {
+  const handlerSubmit = (e) => {
+    e.preventDefault();
     axios
-      .put("", newReview.value)
+      .put("/api/reviews", newReview.value)
       .then((result) => alert("Thank you, we love to hear what you think!"))
       .catch((err) => console.log(err));
   };
@@ -49,6 +50,29 @@ const ProductDetail = () => {
               <p className="card-text">
                 {singleProduct.stock ? "Hay Stock" : "No contamos con Stock"}
               </p>
+
+              <div class="form-group shadow-textarea ">
+                <form id="formId" onSubmit={handlerSubmit}>
+                  <label for="exampleFormControlTextarea6">DEJANOS TU COMENTARIO!</label>
+
+                  <textarea class="form-control z-depth-1 shadow" 
+                  id="exampleFormControlTextarea6" 
+                  rows="3" 
+                  placeholder="Write something here..."
+                  // onKeyDown={textAreaSubmitEvent}
+                  {...newReview}></textarea>
+
+                  <button
+                    type="submit"
+                    className="btn btn-outline-secondary"
+                    id="input-group-button-right">
+                    Search
+                  </button>
+
+                </form>
+              </div>
+
+
               {/* COMENTADO XQ NO SABEMOS SI VIENE COMO ARRAY
             {singleProduct.reviews.length && (
               <>

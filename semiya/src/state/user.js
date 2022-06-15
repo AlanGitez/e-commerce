@@ -42,7 +42,7 @@ export const userReducer = createReducer(
       localStorage.setItem("user", JSON.stringify(action.payload)),
     [setUser.fulfilled]: (state, action) => action.payload,
     [logoutRequest.fulfilled]: (state, action) =>
-      action.payload === "OK" && localStorage.setItem("user", null),
+      action.payload === "OK" && localStorage.setItem("user",null),
     [promoteAdminRequest.fulfilled]: (state, action) =>
       localStorage.setItem("user", JSON.stringify(action.payload)),
   }

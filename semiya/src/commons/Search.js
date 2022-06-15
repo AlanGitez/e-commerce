@@ -1,7 +1,7 @@
 import React from "react";
 import useInput from "../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { useHistory, useNavigate } from "react-router";
 import { setWayToFilter } from "../state/wayToFilter";
 
 const Search = () => {
@@ -16,8 +16,8 @@ const Search = () => {
     product.value ?
       dispach(setWayToFilter(nameQuery)):
       alert('Por favor indique algun parametro de busqueda')
+    navigate(`/products?${nameQuery.type}=${nameQuery.value}`)
     };
-
   return (
     <div className="container littleMargin">
       <form onSubmit={submitHandler}>
@@ -42,11 +42,12 @@ const Search = () => {
         <select
           className="form-select form-select-sm"
           aria-label="Small select"
+          onChange={(e)=>dispach(setWayToFilter({value:e.target.value, type:'category'}))} 
         >
           <option defaultValue="">Categories</option>
           {categories.map((category, i) => (
-            <option onClick={()=>dispach(setWayToFilter({value:category.name, type:'category'}))} key={i} value={category.name}>
-              {category.name}
+            <option key={i} value={category.name}>
+                {category.name}
             </option>
           ))}
         </select>

@@ -7,7 +7,9 @@ import { filteredCategoryReducer } from "./filteredByCategory";
 import { filteredProductReducer } from "./filteredProducts";
 import { renderedProductsReducer } from "./renderedProducts";
 import { singleProductReducer } from "./singleProduct";
+import { totalAmountReducer } from "./totalAmount";
 import { userReducer } from "./user";
+import { virtualCartReducer } from "./virtualCart";
 import { setWayToFilterReducer } from "./wayToFilter";
 
 const store = configureStore({
@@ -22,7 +24,8 @@ const store = configureStore({
     wayToFilter:setWayToFilterReducer,
     renderedProducts:renderedProductsReducer,
     cart: cartReducer,
-    totalAmount: totalReducer,
+    virtualCart: virtualCartReducer,
+    totalAmount: totalAmountReducer,
   },
 });
 

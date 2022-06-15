@@ -1,39 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../commons/CartItem";
 import { clearCart } from "../state/cart";
-import { Link } from "react-router-dom";
-import { totalAmount } from "../state/totalAmount";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { clearVirtualCart } from "../state/virtualCart";
 
 const ShoppingCart = () => {
-  const cart = useSelector((state) => state.cart);
-  const totalAmount1 = useSelector((state) => state.totalAmount);
-  // const [totalAmount2, setTotalAmount2] = useState(0);
-  const [virtualCart, setVirtualCart] = useState([]);
+  const virtualCart = useSelector(state => state.virtualCart);
+  const totalAmount = useSelector((state) => state.totalAmount);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const cleanCart = () => {
     dispatch(clearCart());
+    dispatch(clearVirtualCart());
     localStorage.removeItem("cart");
   };
-
-  useEffect(() => {
-    if (cart.length !== 0) {
-      dispatch(
-        totalAmount(
-          cart.reduce((suma, item) => {
-            return (suma += item.price);
-          }, 0)
-        )
-      );
-    } else {
-      dispatch(totalAmount(0));
-    }
-    // dispatch(totalAmount(totalAmount2))
-
-    cart.length &&
-      setVirtualCart(cart.filter((item, i) => cart.indexOf(item) === i));
-  }, [cart]);
 
   return (
     <>
@@ -70,12 +52,14 @@ const ShoppingCart = () => {
           </div>
 
           <div className="col-sm-5 d-flex align-items-center justify-content-end">
-            <h4>{`TOTAL ${totalAmount1}`}</h4>
+            <h4>{`TOTAL ${totalAmount}`}</h4>
           </div>
 
-          <Link to="/shopping-cart/check-out">
-            <button className="btn btn-success">GO CHECKOUT!</button>
-          </Link>
+            <button onClick={(e) => {
+              e.preventDefault();
+              navigate("/shopping-cart/check-out");
+            }} disabled={!virtualCart.length} className="btn btn-success">GO CHECKOUT!</button>
+
         </div>
       </div>
     </>
