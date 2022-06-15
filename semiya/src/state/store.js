@@ -22,8 +22,8 @@ const store = configureStore({
     wayToFilter:setWayToFilterReducer,
     renderedProducts:renderedProductsReducer,
     cart: cartReducer,
+    totalAmount: totalReducer,
   },
-
 });
 
 export default store;
