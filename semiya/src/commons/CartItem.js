@@ -69,7 +69,7 @@ const CartItem = ({ product }) => {
             </strong>
           </div>
 
-          <button className="delete btn" onClick={handleDelete}> del </button>
+          <button className="delete btn" onClick={handleDelete}> Eliminar Producto </button>
         </div>
       </li>
     </>

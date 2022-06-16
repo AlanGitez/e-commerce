@@ -52,11 +52,12 @@ const Home = () => {
       </Carousel>
 
       <Navbar />
-      <div className="main-container"> {/* Esta clase no existe */}
-        <div className="cards-container"> 
-          {randomNumbers.map((randomNumber, i) => 
-            <ProductItem key={i} product={defaultProducts[randomNumber]} />
-          )}
+      <div className="main-container">
+        <div className="cards-container">
+          {defaultProducts.map((product, i) => {
+            if (i % 16 === 0)
+              return <ProductItem key={i} product={product} />;
+          })}
         </div>
       </div>
     </>

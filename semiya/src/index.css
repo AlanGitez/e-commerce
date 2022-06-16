@@ -271,9 +271,13 @@ nav {
   height: 60%;
   object-fit: cover;
 }
-
+.App{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 .footer{
-  position:fixed;
+  margin-top:auto;
   bottom:0;
   clear:both;
   width:100%;
@@ -290,4 +294,48 @@ nav {
   .logo {
     display: block;
   }
+}
+
+.shopping-button {
+  background-color: var(--green);
+  border-radius: 8px;
+  border: none;
+  color: var(--white);
+  width: 200px;
+  cursor: pointer;
+  font-size: var(--md);
+  font-weight: bold;
+  height: 50px;
+margin-top: 10px;}
+
+
+.Shopping-secondary-button {
+background-color: var(--white);
+border-radius: 8px;
+border: 1px solid var(--green);
+color: var(--green);
+width: 200px;
+cursor: pointer;
+font-size: var(--md);
+font-weight: bold;
+height: 50px;
+margin-top: 10px;
+margin-bottom: 10px;
+}
+
+.primary-button-card {
+  background-color: var(--green);
+  border-radius: 8px;
+  border: none;
+  color: var(--white);
+  width: 80;
+  cursor: pointer;
+  font-size: var(--md);
+  font-weight: bold;
+  height: 50px;
+}
+
+.espacio-mini {
+  margin-bottom: 20px;
+  margin-top: 20px;
 }

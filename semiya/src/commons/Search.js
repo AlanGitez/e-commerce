@@ -48,7 +48,7 @@ const Search = () => {
           aria-label="Small select"
           onChange={(e)=>{
             const filterObj = {value:e.target.value, type:'category'};
-            dispach(setWayToFilter(filterObj))
+            dispatch(setWayToFilter(filterObj))
             navigate(`/products?${filterObj.type}=${filterObj.value}`)
           }} 
         >

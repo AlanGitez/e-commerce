@@ -39,9 +39,11 @@ const UserPurchases = () => {
                   {purchase.cart.lenght != 0 && (
                     <p style={{ fontSize: "0.75em", color:"black" }}>
                       {purchase.cart.slice(0, 4).map((product, i) => (
-                        <span key={i}>
+                       <> <span key={i}>
                           {i + 1}- {product.name}
                         </span>
+                        <br/>
+                        </>
                       ))}
                       {purchase.cart.lenght > 4 && <>...</>}
                     </p>

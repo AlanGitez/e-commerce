@@ -15,11 +15,12 @@ const DeleteProduct = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(deleteRequest({ type: "products", id: selectedProduct }));
-    dispatch(defaultProductRequest())
-    navigate(`/products`)
+    dispatch(deleteRequest({ type: "products", id: selectedProduct }))
+    .then(()=>dispatch(defaultProductRequest()))
+    .then(()=>navigate('/products'))
+    .catch((error)=> console.log(error))
   };
-
+  
   useEffect(() => {
     dispatch(singleProductRequest(selectedProduct));
   }, [selectedProduct]);

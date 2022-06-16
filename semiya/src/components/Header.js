@@ -16,7 +16,7 @@ const Header = () => {
     e.preventDefault();
     dispatch(logoutRequest())
       .then(() => dispatch(setUser()))
-      .then(() => navigate("/"))
+      .then(() => navigate("/login"))
       .catch((err) => console.log(err));
   };
   
