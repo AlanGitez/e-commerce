@@ -32,6 +32,8 @@ import { filteredProductRequest } from "./state/filteredProducts";
 import { filteredCategoryRequest } from "./state/filteredByCategory";
 import { setWayToFilter } from "./state/wayToFilter";
 import { renderedProducts } from "./state/renderedProducts";
+import DeleteProduct from "./components/Admin/DeleteProduct";
+import DeleteCategory from "./components/Admin/DeleteCategory";
 
 function App() {
   const navigate = useNavigate();
@@ -89,9 +91,11 @@ function App() {
           <Route path="/profile/1/purchases/:purchaseId" element={<PastPurchase />} />
           <Route path="/profile/:id/admin" element={<Admin />} />
           <Route path="/profile/:id/admin/new-product" element={<NewProduct />} />
+          <Route path="/profile/:id/admin/delete-product" element={<DeleteProduct />} />
           <Route path="/profile/:id/admin/update-product" element={<UpdateProduct />} />
           <Route path="/profile/:id/admin/new-category" element={<NewCategory />} />
           <Route path="/profile/:id/admin/update-category" element={<UpdateCategory />} />
+          <Route path="/profile/:id/admin/delete-category" element={<DeleteCategory />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/404" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/404" />} />

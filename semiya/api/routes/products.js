@@ -25,6 +25,7 @@ ProductsRouter.get("/:id", (req, res, next) => {
 
 
 ProductsRouter.post("/", (req, res, next) => {
+  console.log("Entre en este post de products")
   const { categories } = req.body;
   const { name } = categories;
   Categories.findOrCreate({

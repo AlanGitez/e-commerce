@@ -8,7 +8,7 @@ const Search = () => {
   const navigate = useNavigate();
   const product = useInput();
 
-  const dispach = useDispatch();
+  const dispatch = useDispatch();
   const categories = useSelector((state) => state.defaultCategories);
 
   const submitHandler = (e) => {
@@ -46,7 +46,7 @@ const Search = () => {
         <select
           className="form-select form-select-sm"
           aria-label="Small select"
-          onChange={(e)=>dispach(setWayToFilter({value:e.target.value, type:'category'}))} 
+          onChange={(e)=>dispatch(setWayToFilter({value:e.target.value, type:'category'}))} 
         >
           <option defaultValue="">Categories</option>
           {categories.map((category, i) => (
