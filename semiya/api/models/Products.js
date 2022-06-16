@@ -31,7 +31,22 @@ Products.init(
     image: {
       type: s.STRING,
       // allowNull: false,
-    }
+    },
+    snippet: {
+      type: s.VIRTUAL,
+      get() {
+        if (this.getDataValue("name") === undefined) return "";
+        if (this.getDataValue("name").length < 30) {
+          let dif = 30 - this.getDataValue("name").length;
+          let blanks = "";
+          for (let i = 0; i < dif; i++) {
+            blanks += " ";
+          }
+          return this.getDataValue("name") + blanks + "...";
+        }
+        return this.getDataValue("name").slice(0, 30) + "...";
+      },
+    },
   },
   { sequelize: db, modelName: "products" }
 );

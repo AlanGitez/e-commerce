@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import noImg from "../assets/noImg.jpeg"
 
 import AddCartButton from "./AddCartButton";
 
@@ -10,30 +11,31 @@ const ProductItem = ({ product }) => {
   // const [storageCart, setStorageCart] = useLocalStorage("cart", []);
 
   return (
-    <Link to={`/product/${product.id}`}>
-      <div className="col">
-        <div className="card">
+    
+    <Link to={`/product/${product.id}`} className="product-card">
+      {/* <div className="col"> */}
+        {/* <div className="product-card"> */}
           <img
-            src={product?.image}
-            className="card-img-top"
+            src={product.image ? product.image : noImg}
+            className="card-img-top" // {/* Esta clase no existe */}
             alt={product.name}
           />
-          <div className="card-body">
-            <h5 className="card-title">{product.name}</h5>
-            <p className="card-text">{product?.rating}</p>
-            <AddCartButton product={product} />
+          <div className="product-info">
+            <p>{product?.snippet}</p>
+            <p>{product?.rating}</p>
 
             {user?.type === "admin" && (
-              <p className="card-text">{`Stock: ${product.stock}`}</p>
-            )}
+              <p>{`Stock: ${product.stock}`}</p>
+              )}
             {!user?.type && (
-              <p className="card-text">
+              <p>
                 {product.stock ? "Hay Stock" : "No contamos con Stock"}
               </p>
             )}
+            <AddCartButton product={product} />
           </div>
-        </div>
-      </div>
+        {/* </div> */}
+      {/* </div> */}
     </Link>
   );
 };
