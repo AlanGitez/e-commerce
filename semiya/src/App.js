@@ -21,6 +21,8 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import { setUser } from "./state/user";
 import Profile from "./components/Profile";
 import Admin from "./components/Admin";
+import UserPurchases from "./components/UserPurchases.js";
+import PastPurchase from './components/PastPurchase.js'
 import NewProduct from "./components/Admin/NewProduct";
 import UpdateProduct from "./components/Admin/UpdateProduct";
 import NewCategory from "./components/Admin/NewCategory";
@@ -28,10 +30,11 @@ import UpdateCategory from "./components/Admin/UpdateCategory";
 import { defaultCategoriesRequest } from "./state/defaultCategories";
 import { filteredProductRequest } from "./state/filteredProducts";
 import { filteredCategoryRequest } from "./state/filteredByCategory";
-import { setWayToFilter } from "./state/wayToFilter";
 import { renderedProducts } from "./state/renderedProducts";
 import { virtualCart } from "./state/virtualCart";
 import { totalAmount } from "./state/totalAmount";
+import DeleteProduct from "./components/Admin/DeleteProduct";
+import DeleteCategory from "./components/Admin/DeleteCategory";
 
 function App() {
   const navigate = useNavigate();
@@ -64,7 +67,7 @@ function App() {
       dispatch(filteredCategoryRequest()).then(() =>
         dispatch(renderedProducts())
       );
-    // navigate(`/products?${wayToFilter.type}=${wayToFilter.value}`);
+
   }, [wayToFilter]);
 
   useEffect(() => {
@@ -87,11 +90,15 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/profile/:id/purchases" element={<UserPurchases />} />
+          <Route path="/profile/1/purchases/:purchaseId" element={<PastPurchase />} />
           <Route path="/profile/:id/admin" element={<Admin />} />
           <Route path="/profile/:id/admin/new-product" element={<NewProduct />} />
+          <Route path="/profile/:id/admin/delete-product" element={<DeleteProduct />} />
           <Route path="/profile/:id/admin/update-product" element={<UpdateProduct />} />
           <Route path="/profile/:id/admin/new-category" element={<NewCategory />} />
           <Route path="/profile/:id/admin/update-category" element={<UpdateCategory />} />
+          <Route path="/profile/:id/admin/delete-category" element={<DeleteCategory />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/404" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/404" />} />

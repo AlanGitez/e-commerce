@@ -1,25 +1,25 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import useInput from "../../hooks/useInput";
-import { updateRequest } from "../../state/admin/updateForAdmin";
+import { deleteRequest } from "../../state/admin/deleteForAdmin";
 import { defaultCaqteogriesRequest } from "../../state/defaultCategories";
 
-const UpdateCategory = () => {
-  const [selectedCategory, setSelectedCategory] = useState(0);
+
+const DeleteCategory = () => {
+  const [selectedCategory, setSelectedCategory] = useState("");
   const categories = useSelector((state) => state.defaultCategories);
   const user = useSelector((state) => state.user);
-  const newName = useInput();
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  
+
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(updateRequest({type: "categories", id: selectedCategory, body: {name: newName.value}}))
+    dispatch(deleteRequest({type: "categories",id: selectedCategory}))
     dispatch(defaultCaqteogriesRequest())
     navigate(`/profile/${user.id}/admin`)
+
   };
-  
+
   return (
     <>
       <Link to={`/profile/${user.id}/admin`}>
@@ -31,34 +31,26 @@ const UpdateCategory = () => {
         className="form-select form-select-sm"
         aria-label="Small select"
         onChange={(e) => {
-          setSelectedCategory(parseInt(e.target.value))
+          setSelectedCategory(parseInt(e.target.value));
         }}
       >
-        <option defaultValue="">Categories</option>
+        <option defaultValue="">Select a Category</option>
         {categories.map((category, i) => (
           <option key={category.id} value={category.id}>
             {category.name}
           </option>
         ))}
       </select>
-      <form onSubmit={submitHandler}>
-        <label htmlFor="inputNewName" className="form-label">
-          New Name
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="inputNewName"
-          placeholder="New Name"
-          aria-describedby="newNameHelp"
-          {...newName}
-        />
-        <button type="submit" className="btn btn-primary littleMargin">
-          Update
-        </button>
-      </form>
+
+      <button
+        type="submit"
+        className="btn btn-danger littleMargin"
+        onClick={submitHandler}
+      >
+        DELETE 🗑
+      </button>
     </>
   );
 };
 
-export default UpdateCategory;
+export default DeleteCategory;

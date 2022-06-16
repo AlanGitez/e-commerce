@@ -23,7 +23,8 @@ CategoriesRouter.get("/:name", (req, res, next) => {
 });
 
 CategoriesRouter.post("/", (req, res, next) => {
-  Categories.create(req.body.name)
+  console.log("entro en el post de categories")
+  Categories.create(req.body)
     .then((category) => res.send(category))
     .catch(next);
 });

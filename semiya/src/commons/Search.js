@@ -8,14 +8,17 @@ const Search = () => {
   const navigate = useNavigate();
   const product = useInput();
 
-  const dispach = useDispatch();
+  const dispatch = useDispatch();
   const categories = useSelector((state) => state.defaultCategories);
 
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log("🚀 ~ file: Search.js ~ line 18 ~ submitHandler ~ e.target[0].value", e.target[0].value)
     const nameQuery = { value: product.value, type: "name" };
-    product.value ?
-      dispach(setWayToFilter(nameQuery)):
+    e.target[0].value=''
+    product.onChange()
+    nameQuery.value ?
+      dispatch(setWayToFilter(nameQuery)):
       alert('Por favor indique algun parametro de busqueda')
     navigate(`/products?${nameQuery.type}=${nameQuery.value}`)
     };
@@ -30,7 +33,6 @@ const Search = () => {
             placeholder="What are you looking for?"
             aria-label="Product"
             aria-describedby="input-group-button-right"
-            defaultValue=''
           />
           <button
             type="submit"

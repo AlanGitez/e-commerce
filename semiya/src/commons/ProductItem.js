@@ -1,30 +1,41 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import noImg from "../assets/noImg.jpeg"
 
 import AddCartButton from "./AddCartButton";
 
 const ProductItem = ({ product }) => {
-  const cart = useSelector(state => state.cart);
+  // const cart = useSelector(state => state.cart);
+  const user = useSelector((state) => state.user);
   // const [storageCart, setStorageCart] = useLocalStorage("cart", []);
-  
 
   return (
-    <Link to={`/product/${product.id}`}>
-      <div className="col">
-        <div className="card">
-          <img src={product?.image} className="card-img-top" alt={product.name} />
-          <div className="card-body">
-            <h5 className="card-title">{product.name}</h5>
-            <p className="card-text">{product?.rating}</p>
-            <AddCartButton product={product} />
+    
+    <Link to={`/product/${product.id}`} className="product-card">
+      {/* <div className="col"> */}
+        {/* <div className="product-card"> */}
+          <img
+            src={product.image ? product.image : noImg}
+            className="card-img-top" // {/* Esta clase no existe */}
+            alt={product.name}
+          />
+          <div className="product-info">
+            <p>{product?.snippet}</p>
+            <p>{product?.rating}</p>
 
-            <p className="card-text">
-              {product.stock ? "Hay Stock" : "No contamos con Stock"}
-            </p>
+            {user?.type === "admin" && (
+              <p>{`Stock: ${product.stock}`}</p>
+              )}
+            {!user?.type && (
+              <p>
+                {product.stock ? "Hay Stock" : "No contamos con Stock"}
+              </p>
+            )}
+            <AddCartButton product={product} />
           </div>
-        </div>
-      </div>
+        {/* </div> */}
+      {/* </div> */}
     </Link>
   );
 };
