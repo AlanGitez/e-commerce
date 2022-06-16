@@ -7,6 +7,7 @@ import { setWayToFilter } from "../state/wayToFilter";
 const Search = () => {
   const navigate = useNavigate();
   const product = useInput();
+
   const dispach = useDispatch();
   const categories = useSelector((state) => state.defaultCategories);
 
@@ -29,6 +30,7 @@ const Search = () => {
             placeholder="What are you looking for?"
             aria-label="Product"
             aria-describedby="input-group-button-right"
+            defaultValue=''
           />
           <button
             type="submit"
@@ -42,7 +44,11 @@ const Search = () => {
         <select
           className="form-select form-select-sm"
           aria-label="Small select"
-          onChange={(e)=>dispach(setWayToFilter({value:e.target.value, type:'category'}))} 
+          onChange={(e)=>{
+            const filterObj = {value:e.target.value, type:'category'};
+            dispach(setWayToFilter(filterObj))
+            navigate(`/products?${filterObj.type}=${filterObj.value}`)
+          }} 
         >
           <option defaultValue="">Categories</option>
           {categories.map((category, i) => (

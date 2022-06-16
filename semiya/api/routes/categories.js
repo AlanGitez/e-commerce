@@ -28,7 +28,7 @@ CategoriesRouter.post("/", (req, res, next) => {
     .catch(next);
 });
 
-CategoriesRouter.delete("/:id", (req, res, next) => {
+CategoriesRouter.delete("/delete/:id", (req, res, next) => {
   Categories.destroy({
     where: { id: req.params.id },
   })

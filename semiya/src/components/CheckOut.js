@@ -18,8 +18,8 @@ const CheckOut = () => {
 
   const handlerSubmit = (e) => {
     e.preventDefault();
-    if(!user.id) return alert("Solo falta registrarse para disfrutar de nuestros productos!")
-    axios.post(`api/purchases/${user.id}`, {
+    if(!user) return alert("Solo falta registrarse para disfrutar de nuestros productos!")
+    axios.post(`/api/purchases/${user.id}`, {
       name: name.value,
       lastname: lastname.value,
       email: email.value, 

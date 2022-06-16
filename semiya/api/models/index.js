@@ -8,7 +8,7 @@ const Categories = require("./Categories");
 // Users.hasOne(Favorites, {as: "favorites"});
 
 
-Purchases.belongsTo(Users, {as: "author"});
+Purchases.belongsTo(Users, {as: "author", foreignKey: 'authorId'});
 Purchases.hasMany(Products, {as: "products"});
 Users.hasMany(Purchases, {as: "purchases"});
 

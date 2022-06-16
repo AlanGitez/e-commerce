@@ -40,7 +40,7 @@ ProductsRouter.post("/", (req, res, next) => {
 });
 
 //modificar un producto
-ProductsRouter.put("/:id", (req, res, next) => {
+ProductsRouter.put("/update/:id", (req, res, next) => {
   Products.update(req.body, {
     where: {
       id: req.params.id,
@@ -54,7 +54,7 @@ ProductsRouter.put("/:id", (req, res, next) => {
 });
 
 //eliminar un producto
-ProductsRouter.delete("/:id", (req, res, next) => {
+ProductsRouter.delete("/delete/:id", (req, res, next) => {
   Products.destroy({
     where: { id: req.params.id },
   })
