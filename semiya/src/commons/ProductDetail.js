@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { singleProductRequest } from "../state/singleProduct";
 import Navbar from "../components/Navbar";
 import AddCartButton from "./AddCartButton";
+import { textAreaSubmitEvent } from "../utils/utils";
 
 const ProductDetail = () => {
   // const newReview = useInput();
@@ -18,13 +19,13 @@ const ProductDetail = () => {
     dispatch(singleProductRequest(id));
   }, []);
 
-  //falta direccion de axios
-  // const handleClick = () => {
-  //   axios
-  //     .put("", newReview.value)
-  //     .then(() => alert("Thank you, we love to hear what you think!"))
-  //     .catch((err) => console.log(err));
-  // };
+  const handlerSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .put("/api/reviews", newReview.value)
+      .then((result) => alert("Thank you, we love to hear what you think!"))
+      .catch((err) => console.log(err));
+  };
 
   return (
     <>
@@ -46,6 +47,32 @@ const ProductDetail = () => {
               <p className="card-text">{singleProduct.description}</p>
               <p className="card-text">$:{singleProduct.price}</p>
               <AddCartButton product={singleProduct} />
+              <p className="card-text">
+                {singleProduct.stock ? "Hay Stock" : "No contamos con Stock"}
+              </p>
+
+              <div class="form-group shadow-textarea ">
+                <form id="formId" onSubmit={handlerSubmit}>
+                  <label for="exampleFormControlTextarea6">DEJANOS TU COMENTARIO!</label>
+
+                  <textarea class="form-control z-depth-1 shadow" 
+                  id="exampleFormControlTextarea6" 
+                  rows="3" 
+                  placeholder="Write something here..."
+                  // onKeyDown={textAreaSubmitEvent}
+                  {...newReview}></textarea>
+
+                  <button
+                    type="submit"
+                    className="btn btn-outline-secondary"
+                    id="input-group-button-right">
+                    Search
+                  </button>
+
+                </form>
+              </div>
+
+
 
               {user?.type === "admin" && (
                 <>
@@ -67,26 +94,7 @@ const ProductDetail = () => {
                   {singleProduct.stock ? "Hay Stock" : "No contamos con Stock"}
                 </p>
               )}
-              {/* COMENTADO XQ NO SABEMOS SI VIENE COMO ARRAY
-            {singleProduct.reviews.length && (
-              <>
-              <h6>Reviews:</h6>
-              <ul className="list-group list-group-flush">
-              {singleProduct.reviews.map((review) => (
-                <li className="list-group-item">{review.description}</li>
-                ))}
-                </ul>
-                </>
-              )} */}
-              {/* <div className="input-group"> */}
-              {/* <span onClick={handleClick} className="input-group-text">
-                  Add a review:
-                </span> */}
-              {/* <textarea {...newReview}
-                className="form-control"
-                aria-label="With textarea"
-              ></textarea> */}
-              {/* </div> */}
+              
             </div>
           </div>
         </div>

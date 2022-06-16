@@ -27,11 +27,12 @@ import NewProduct from "./components/Admin/NewProduct";
 import UpdateProduct from "./components/Admin/UpdateProduct";
 import NewCategory from "./components/Admin/NewCategory";
 import UpdateCategory from "./components/Admin/UpdateCategory";
-import { defaultCaqteogriesRequest } from "./state/defaultCategories";
+import { defaultCategoriesRequest } from "./state/defaultCategories";
 import { filteredProductRequest } from "./state/filteredProducts";
 import { filteredCategoryRequest } from "./state/filteredByCategory";
-import { setWayToFilter } from "./state/wayToFilter";
 import { renderedProducts } from "./state/renderedProducts";
+import { virtualCart } from "./state/virtualCart";
+import { totalAmount } from "./state/totalAmount";
 import DeleteProduct from "./components/Admin/DeleteProduct";
 import DeleteCategory from "./components/Admin/DeleteCategory";
 
@@ -47,7 +48,7 @@ function App() {
 
   useEffect(() => {
     dispatch(defaultProductRequest()).then(() => dispatch(renderedProducts()));
-    dispatch(defaultCaqteogriesRequest());
+    dispatch(defaultCategoriesRequest());
     dispatch(setUser());
     user.id && setStorageUser(user.id);
     !cart.length && dispatch(updateFromStorage());
@@ -70,6 +71,8 @@ function App() {
   }, [wayToFilter]);
 
   useEffect(() => {
+    dispatch(totalAmount());
+    cart.length && dispatch(virtualCart())
     cart.length && setStorageCart(cart);
   }, [cart]);
 

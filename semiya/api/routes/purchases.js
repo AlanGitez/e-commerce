@@ -5,16 +5,15 @@ const {Purchases, Users}=require('../models');
 const purchasesRouter=express.Router();
 
 
-
 purchasesRouter.post("/:id", (req, res, next) => {
 const id =req.params.id
-let testAccount;
-let transporter;
+// let testAccount;
+// let transporter;
 Users.findByPk(id)
 .then((user)=> 
     Purchases.create(req.body)
       .then((purchase) => purchase.setAuthor(user))
-      .then(()=> testAccount =  nodemailer.createTestAccount())
+      // .then(()=> testAccount =  nodemailer.createTestAccount())
     //   .then(()=>{ transporter = nodemailer.createTransport({
     //     host: "smtp.ethereal.email",
     //     port: 587,
@@ -33,7 +32,7 @@ Users.findByPk(id)
     //   }))
       .then((purchase) => res.send(purchase))
       .catch(next))
-      .catch(next)
+    .catch(next)
   });
   
   purchasesRouter.get('/:id', (req,res, next)=>{

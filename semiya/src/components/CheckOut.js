@@ -1,9 +1,36 @@
+import axios from "axios";
 import React from "react";
 import { useSelector } from "react-redux";
+import useInput from "../hooks/useInput";
 
 const CheckOut = () => {
-  const setTotalAmount1 = useSelector((state) => state.totalAmount);
+  const totalAmount = useSelector((state) => state.totalAmount);
+  const user = useSelector(state => state.user);
+  const cart = useSelector(state => state.cart);
+
+  const name = useInput();
+  const lastname = useInput();
+  const email = useInput();
+  const city = useInput();
+  const adress = useInput();
+
   let costoDeEnvio = 500;
+
+  const handlerSubmit = (e) => {
+    e.preventDefault();
+    if(!user) return alert("Solo falta registrarse para disfrutar de nuestros productos!")
+    axios.post(`/api/purchases/${user.id}`, {
+      name: name.value,
+      lastname: lastname.value,
+      email: email.value, 
+      shippingAdress: adress.value, 
+      cart: cart,
+      totalAmount: totalAmount})
+      .then(res => res.data)
+      .then(purchase => alert(purchase))
+      .catch(err => console.error(err));
+  } ;
+
   return (
     <>
       <div>
@@ -12,76 +39,82 @@ const CheckOut = () => {
       <div className="container-sm">
         <div className="row">
           <div className="col-sm-8">
-            <form class="row g-3 needs-validation form a" novalidate>
-              <div class="col-md-4">
-                <label class="form-label">Nombre</label>
+
+            <form onSubmit={handlerSubmit} className="row g-3 needs-validation form a">
+              <div className="col-md-4">
+                <label className="form-label">Nombre</label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="validationCustom01"
-                  require
+                  {...name}
+                  required={true}
                 />
-                <div class="valid-feedback">Looks good!</div>
+                <div className="valid-feedback">Looks good!</div>
               </div>
-              <div class="col-md-4">
-                <label for="validationCustom02" class="form-label">
+              <div className="col-md-4">
+                <label htmlFor="validationCustom02" className="form-label">
                   Apellido
                 </label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="validationCustom02"
-                  require
+                  {...lastname}
+                  required={true}
                 />
-                <div class="valid-feedback">Looks good!</div>
+                <div className="valid-feedback">Looks good!</div>
               </div>
-              <div class="col-md-4">
-                <label for="validationCustomUsername" class="form-label">
+              <div className="col-md-4">
+                <label htmlFor="validationCustomUsername" className="form-label">
                   E-mail
                 </label>
-                <div class="input-group has-validation">
-                  <span class="input-group-text" id="inputGroupPrepend">
+                <div className="input-group has-validation">
+                  <span className="input-group-text" id="inputGroupPrepend">
                     @
                   </span>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="validationCustomUsername"
                     aria-describedby="inputGroupPrepend"
-                    require
+                    {...email}
+                    required={true}
                   />
-                  <div class="invalid-feedback">Please choose a username.</div>
+                  <div className="invalid-feedback">Please choose a username.</div>
                 </div>
               </div>
-              <div class="col-md-6">
-                <label for="validationCustom03" class="form-label">
+              <div className="col-md-6">
+                <label htmlFor="validationCustom03" className="form-label">
                   Ciudad
                 </label>
 
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="validationCustom03"
-                  require
+                  {...city}
+                  required={true}
                 />
-                <div class="invalid-feedback">Please provide a valid city.</div>
+                <div className="invalid-feedback">Please provide a valid city.</div>
               </div>
-              <div class="col-md-6">
-                <label for="validationCustom03" class="form-label">
+              <div className="col-md-6">
+                <label htmlFor="validationCustom03" className="form-label">
                   Dirección de envio
                 </label>
 
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="validationCustom03"
-                  require
+                  {...adress}
+                  required={true}
                 />
-                <div class="invalid-feedback">Please provide a valid city.</div>
+                <div className="invalid-feedback">Please provide a valid city.</div>
               </div>
 
-              <div class="col-12">
-                <button class="btn btn-primary" type="submit">
+              <div className="col-12">
+                <button className="btn btn-primary" type="submit">
                   Finalizar compra
                 </button>
               </div>
@@ -89,24 +122,25 @@ const CheckOut = () => {
           </div>
 
           <div className="col-sm-4 d-flex align-content-center">
-            <div class="card">
+            <div className="card">
               <img
-                class="card-img imgMauro"
+                className="card-img imgMauro"
                 src="https://media-exp1.licdn.com/dms/image/C4E03AQHsRCZHppRPBg/profile-displayphoto-shrink_800_800/0/1567712683900?e=1660780800&v=beta&t=NPMfcdiGN8drejX_mAKfc8q9nWtuGbM6spmR1qyPy48"
                 alt="..."
               />
-              <div class="row card-body">
-                <h5 class="card-title">Tu compra</h5>
+              <div className="row card-body">
+                <h5 className="card-title">Tu compra</h5>
                 <hr />
-                <div class="col-6 card-text card-checkout margin">
+                <div className="col-6 card-text card-checkout margin">
+                  Subtotal : ${totalAmount}
+                </div>
+                <div className="col-6 card-text card-checkout margin">
                   Costo de envio : ${costoDeEnvio}
                 </div>
-                <div class="col-7 card-text card-checkout">
-                  <h3>{`TOTAL : $${setTotalAmount1 + costoDeEnvio} `}</h3>
+                <div className="col-7 card-text card-checkout">
+                  <h3>{`TOTAL : $${totalAmount + costoDeEnvio} `}</h3>
                 </div>
-                {/* <a href="#" class="btn btn-primary">
-                  Go somewhere
-                </a> */}
+      
               </div>
             </div>
           </div>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart, deleteFromCart, removeOne } from "../state/cart";
-import useInput from "../hooks/useInput";
 import { useSelector } from "react-redux";
 
 const CartItem = ({ product }) => {
@@ -34,8 +33,8 @@ const CartItem = ({ product }) => {
     }
     if(quantity.trigger == "decrease"){
         
-          dispatch(removeOne(product));
-          setQuantity({amount: quantity.amount, trigger: ""})
+      dispatch(removeOne(product));
+      setQuantity({amount: quantity.amount, trigger: ""})
         
     }
   }, [quantity])
@@ -56,15 +55,6 @@ const CartItem = ({ product }) => {
             <strong>{product.name}</strong>
           </div>
           <div className="col-1" id={product.id}>
-            {/* <input   ESTE ES EL QUE ESTABA ANTES DE QUE META MANO. Alan.-
-              type="number"
-              step={product.fraccionable ? 0.1 : 1}
-              defaultValue={1}
-              min={product.fraccionable ? 0.1 : 1}
-              max={product.stock}
-              onChange={quantity.onChange}
-            /> */}
-
 
           <button onClick={increase}>+</button>
           <p>{quantity.amount || 1}</p>
@@ -79,7 +69,7 @@ const CartItem = ({ product }) => {
             </strong>
           </div>
 
-          <button className="delete" onClick={handleDelete}> del </button>
+          <button className="delete btn" onClick={handleDelete}> del </button>
         </div>
       </li>
     </>

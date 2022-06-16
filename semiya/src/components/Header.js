@@ -9,13 +9,14 @@ import { setWayToFilter } from "../state/wayToFilter";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const cart = useSelector(state => state.cart);
   const user = useSelector((state) => state.user);
 
   const logoutHandler = (e) => {
     e.preventDefault();
     dispatch(logoutRequest())
       .then(() => dispatch(setUser()))
-      .then(() => navigate("/login"))
+      .then(() => navigate("/"))
       .catch((err) => console.log(err));
   };
   
@@ -72,7 +73,7 @@ const Header = () => {
           <li className="navbar-shopping-cart">
             <Link to="/shopping-cart">
               <img src={carrito} alt="shopping cart" />
-              <div>0</div>
+              <div>{cart.length}</div>
             </Link>
           </li>
         </ul>
