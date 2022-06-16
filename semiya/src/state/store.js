@@ -13,6 +13,7 @@ import { totalReducer } from "./totalAmount";
 import { deleteRequestReducer } from "./admin/deleteForAdmin";
 import { updateRequestReducer } from "./admin/updateForAdmin";
 import { addRequestReducer } from "./admin/addForAdmin";
+import { myPurchasesReducer } from "./myPurchases";
 
 const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
@@ -29,7 +30,8 @@ const store = configureStore({
     totalAmount: totalReducer,
     updateRequest: updateRequestReducer,
     deleteRequest: deleteRequestReducer,
-    addRequest:addRequestReducer
+    addRequest:addRequestReducer, 
+    myPurchases:myPurchasesReducer
   },
 });
 

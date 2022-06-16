@@ -22,9 +22,10 @@ const Profile = () => {
         <h4>Address:</h4>
         <h6>{user.address ? user.address : "No saved addresses yet"}</h6>
         <button className="btn btn-primary">Edit</button>
-        {/* Agregarle la funcionalidad de hacer un put a la tabla en address */}
-        <h4>Last Purchases:</h4>
-        <h6>Esto todavia no existe</h6>
+        <Link to={`/profile/${user.id}/purchases`} className="nav-link active">
+          <button className="btn btn-warning">Your Purchases</button>
+        </Link>
+        
       </div>
     </>
   );
