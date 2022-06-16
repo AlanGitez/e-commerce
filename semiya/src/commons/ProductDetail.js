@@ -7,7 +7,7 @@ import { singleProductRequest } from "../state/singleProduct";
 import Navbar from "../components/Navbar";
 import AddCartButton from "./AddCartButton";
 import axios from 'axios'
-// import { textAreaSubmitEvent } from "../utils/utils";
+
 
 const ProductDetail = () => {
   const newReview = useInput();
@@ -52,11 +52,11 @@ const ProductDetail = () => {
                 {singleProduct.stock ? "Hay Stock" : "No contamos con Stock"}
               </p>
 
-              <div class="form-group shadow-textarea ">
+              <div className="form-group shadow-textarea ">
                 <form id="formId" onSubmit={handlerSubmit}>
-                  <label for="exampleFormControlTextarea6">DEJANOS TU COMENTARIO!</label>
+                  <label htmlFor="exampleFormControlTextarea6">DEJANOS TU COMENTARIO!</label>
 
-                  <textarea class="form-control z-depth-1 shadow" 
+                  <textarea className="form-control z-depth-1 shadow" 
                   id="exampleFormControlTextarea6" 
                   rows="3" 
                   placeholder="Write something here..."

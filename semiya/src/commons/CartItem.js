@@ -18,7 +18,7 @@ const CartItem = ({ product }) => {
   
   const increase = (e) => {
     e.preventDefault();
-    setQuantity({amount: ++quantity.amount, trigger: "increase"});
+    quantity.amount < product.stock && setQuantity({amount: ++quantity.amount, trigger: "increase"});
   };
   
   const decrease = (e) => {
@@ -57,7 +57,7 @@ const CartItem = ({ product }) => {
           <div className="col-1" id={product.id}>
 
           <button onClick={increase}>+</button>
-          <p>{quantity.amount || 1}</p>
+          <p>{quantity.amount || 1}{product.fraccionable && "00 gr"}</p>
           <button onClick={decrease}>-</button>
             
 

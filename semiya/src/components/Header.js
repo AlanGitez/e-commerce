@@ -71,7 +71,7 @@ const Header = () => {
             </>
           )}
           <li className="navbar-shopping-cart">
-            <Link to="/shopping-cart">
+            <Link to={cart.length && "/shopping-cart"}>
               <img src={carrito} alt="shopping cart" />
               <div>{cart.length}</div>
             </Link>

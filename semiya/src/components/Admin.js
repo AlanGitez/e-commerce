@@ -18,14 +18,8 @@ const Admin = () => {
     password !== adminPassword.value
       ? navigate(`/profile/${user.id}`)
       : dispatch(promoteAdminRequest({ id: user.id }))
-          // .then(() => navigate(`/profile/${user.id}`))
-          // .then(() => {
-          //   console.log("Entre al then post dispatch promote");
-          //   dispatch(logoutRequest());
-          //   console.log("Esto es port dispatch de logoutRequest");
-          // })
           .then(() => dispatch(setUser()))
-          .then(() => navigate(`/profile/${user.id}`))
+          .then(() => navigate(`/profile/${user.id}/admin`))
           .catch((error) => console.log("Promote error", error));
   };
 
