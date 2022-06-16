@@ -1,5 +1,5 @@
-const { createAsyncThunk, createReducer } = require("@reduxjs/toolkit");
-const axios = require("axios");
+import { createAsyncThunk, createReducer } from "@reduxjs/toolkit";
+import axios from "axios"
 
 export const updateRequest = createAsyncThunk(
   "SEND_UPDATE_ADMIN_REQUEST",

@@ -1,12 +1,12 @@
-const { createAsyncThunk, createReducer } = require("@reduxjs/toolkit");
-const axios = require("axios");
+import { createAsyncThunk, createReducer } from "@reduxjs/toolkit";
+import axios from "axios"
 
 export const deleteRequest = createAsyncThunk(
   "SEND_DELETE_ADMIN_REQUEST",
   (deleteObj, thunkAPI) => {
     const {type, id} = deleteObj
     
-    return axios.delete(`/api/${type}/update/${id}`).then((res) => res.data);
+    return axios.delete(`/api/${type}/delete/${id}`).then((res) => res.data);
   }
 );
 

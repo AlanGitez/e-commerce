@@ -1,20 +1,25 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import useInput from "../../hooks/useInput";
+import { updateRequest } from "../../state/admin/updateForAdmin";
+import { defaultCaqteogriesRequest } from "../../state/defaultCategories";
 
 const UpdateCategory = () => {
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(0);
   const categories = useSelector((state) => state.defaultCategories);
   const user = useSelector((state) => state.user);
   const newName = useInput();
-
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  
   const submitHandler = (e) => {
     e.preventDefault();
-
-
+    dispatch(updateRequest({type: "categories", id: selectedCategory, body: {name: newName.value}}))
+    dispatch(defaultCaqteogriesRequest())
+    navigate(`/profile/${user.id}/admin`)
   };
-
+  
   return (
     <>
       <Link to={`/profile/${user.id}/admin`}>
@@ -26,9 +31,7 @@ const UpdateCategory = () => {
         className="form-select form-select-sm"
         aria-label="Small select"
         onChange={(e) => {
-          setSelectedCategory(e.target.value)
-          console.log("🚀 ~ file: UpdateCategory.js ~ line 30 ~ UpdateCategory ~ e.target.value", e.target.value)
-          
+          setSelectedCategory(parseInt(e.target.value))
         }}
       >
         <option defaultValue="">Categories</option>
@@ -51,7 +54,7 @@ const UpdateCategory = () => {
           {...newName}
         />
         <button type="submit" className="btn btn-primary littleMargin">
-          Submit
+          Update
         </button>
       </form>
     </>

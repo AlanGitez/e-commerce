@@ -1,15 +1,23 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import useInput from "../../hooks/useInput";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteRequest } from "../../state/admin/deleteForAdmin";
+import { defaultCaqteogriesRequest } from "../../state/defaultCategories";
+
 
 const DeleteCategory = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const categories = useSelector((state) => state.defaultCategories);
   const user = useSelector((state) => state.user);
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(deleteRequest({type: "categories",id: selectedCategory}))
+    dispatch(defaultCaqteogriesRequest())
+    navigate(`/profile/${user.id}/admin`)
+
   };
 
   return (
@@ -23,11 +31,7 @@ const DeleteCategory = () => {
         className="form-select form-select-sm"
         aria-label="Small select"
         onChange={(e) => {
-          setSelectedCategory(e.target.value);
-          console.log(
-            "🚀 ~ file: UpdateCategory.js ~ line 30 ~ UpdateCategory ~ e.target.value",
-            e.target.value
-          );
+          setSelectedCategory(parseInt(e.target.value));
         }}
       >
         <option defaultValue="">Select a Category</option>
@@ -38,8 +42,12 @@ const DeleteCategory = () => {
         ))}
       </select>
 
-      <button type="submit" className="btn btn-primary littleMargin">
-        Submit
+      <button
+        type="submit"
+        className="btn btn-danger littleMargin"
+        onClick={submitHandler}
+      >
+        DELETE 🗑
       </button>
     </>
   );

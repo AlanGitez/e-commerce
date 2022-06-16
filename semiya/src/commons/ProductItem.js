@@ -23,10 +23,10 @@ const ProductItem = ({ product }) => {
             <p className="card-text">{product?.rating}</p>
             <AddCartButton product={product} />
 
-            {user.type === "admin" && (
+            {user?.type === "admin" && (
               <p className="card-text">{`Stock: ${product.stock}`}</p>
             )}
-            {!user.type && (
+            {!user?.type && (
               <p className="card-text">
                 {product.stock ? "Hay Stock" : "No contamos con Stock"}
               </p>

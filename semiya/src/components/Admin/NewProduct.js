@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import useInput from "../../hooks/useInput";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addRequest } from "../../state/admin/addForAdmin";
+import { defaultProductRequest } from "../../state/defaultProducts";
 
 const NewProduct = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -12,34 +14,28 @@ const NewProduct = () => {
   const stock = useInput();
   const image = useInput();
   const fraccionable = useInput();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // console.log("🚀 ~ file: NewProduct.js ~ line 12 ~ NewProduct ~ fraccionable", fraccionable.value)
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(
-      "🚀 ~ file: NewProduct.js ~ line 18 ~ submitHandler ~ name.value",
-      name.value
-    );
-    console.log(
-      "🚀 ~ file: NewProduct.js ~ line 20 ~ submitHandler ~ price.value",
-      price.value
-    );
-    console.log(
-      "🚀 ~ file: NewProduct.js ~ line 22 ~ submitHandler ~ stock.value",
-      stock.value
-    );
-    console.log(
-      "🚀 ~ file: NewProduct.js ~ line 24 ~ submitHandler ~ image.value",
-      image.value
-    );
-    console.log(
-      "🚀 ~ file: NewProduct.js ~ line 26 ~ submitHandler ~ user.value",
-      user.value
-    );
-    console.log(
-      "🚀 ~ file: NewProduct.js ~ line 12 ~ NewProduct ~ fraccionable",
-      fraccionable.value
-    );
+    dispatch(
+      addRequest({
+        type: "products",
+        body: {
+          name: name.value,
+          price: parseInt(price.value),
+          stock: parseInt(stock.value),
+          image: image.value,
+          fraccionable: Boolean(fraccionable.value),
+          categories: {name: selectedCategory},
+        },
+      })
+    )
+      .then(() => dispatch(defaultProductRequest()))
+      .then(() => navigate("/products"))
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -106,20 +102,16 @@ const NewProduct = () => {
           aria-describedby="imageHelp"
           {...image}
         />
-        <br/>
+        <br />
         <select
           className="form-select form-select-sm"
           aria-label="Small select"
           onChange={(e) => {
-            setSelectedCategory(e.target.id);
-            console.log(
-              "🚀 ~ file: UpdateCategory.js ~ line 30 ~ UpdateCategory ~ e.target.id",
-              e.target
-            );
+            setSelectedCategory(e.target.value);
           }}
         >
           <option defaultValue="">Categories</option>
-          {categories.map((category, i) => (
+          {categories.map((category) => (
             <option key={category.id} id={category.id} value={category.name}>
               {category.name}
             </option>

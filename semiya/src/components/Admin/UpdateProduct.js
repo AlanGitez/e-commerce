@@ -1,50 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 // import useInput from "../../hooks/useInput";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import { singleProductRequest } from "../../state/singleProduct";
+import { singleProductRequest } from "../../state/singleProduct";
+import { updateRequest } from "../../state/admin/updateForAdmin";
+import { defaultProductRequest } from "../../state/defaultProducts";
 
 const UpdateProduct = () => {
   const [selectedProduct, setSelectedProduct] = useState(0);
-  console.log(
-    "🚀 ~ file: UpdateProduct.js ~ line 8 ~ UpdateProduct ~ selectedProduct",
-    selectedProduct
-  );
-  // const [selectedCategory, setSelectedCategory] = useState(0);
-  // const categories = useSelector((state) => state.defaultCategories);
   const user = useSelector((state) => state.user);
-  const products = useSelector((state) => state.defaultProducts);
+  // const products = useSelector((state) => state.defaultProducts);
   const singleProduct = useSelector((state) => state.singleProduct);
   const [name, setName] = useState(singleProduct?.name);
   const [price, setPrice] = useState(singleProduct?.price);
   const [stock, setStock] = useState(singleProduct?.stock);
   const [fraccionable, setFraccionable] = useState(singleProduct?.fraccionable);
   const [image, setImage] = useState(singleProduct?.image);
-  const dispatch = useDispatch;
+  const [description, setDescription] = useState(singleProduct?.description);
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(name)
-    console.log(price)
-    console.log(stock)
-    console.log(fraccionable)
-    console.log(image)
-    
+    dispatch(updateRequest({type: "products", id: singleProduct.id, body: {name, price, stock, fraccionable, image, description}}))
+    dispatch(defaultProductRequest())
+    navigate(`/product/${selectedProduct}`)
   };
 
-  // useEffect(()=>{
-  //   dispatch(singleProductRequest(selectedProduct));
+  useEffect(()=>{
+    dispatch(singleProductRequest(selectedProduct));
 
-  //   console.log("🚀 Desde useEffect", selectedProduct)
-  // }, [])
+    console.log("🚀 Desde useEffect", selectedProduct)
+  }, [selectedProduct])
 
   return (
     <>
       <Link to={`/profile/${user.id}/admin`}>
         <button className="btn btn-success littleMargin">Back</button>
       </Link>
-      <h1>Aca va el dropdown de productos</h1>
-      <select
+      <h1>Product to update</h1>
+      {/* <select
         className="form-select form-select-sm"
         aria-label="Small select"
         onChange={(e) => {
@@ -59,7 +54,7 @@ const UpdateProduct = () => {
             {product.name}
           </option>
         ))}
-      </select>
+      </select> */}
       <div>
         <form onSubmit={submitHandler}>
           <label htmlFor="inputName" className="form-label">
@@ -71,7 +66,7 @@ const UpdateProduct = () => {
             id="inputName"
             placeholder="Name"
             aria-describedby="nameHelp"
-            value={singleProduct.name ? singleProduct.name : ""}
+            defaultValue={singleProduct.name ? singleProduct.name : ""}
             onChange={(e) => {
               setName(e.target.value);
             }}
@@ -132,6 +127,20 @@ const UpdateProduct = () => {
             defaultValue={singleProduct.image ? singleProduct.image : ""}
             onChange={(e) => {
               setImage(e.target.value);
+            }}
+          />
+          <label htmlFor="inputDescription" className="form-label">
+            Description
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="inputDescription"
+            placeholder="Description"
+            aria-describedby="DescriptionHelp"
+            defaultValue={singleProduct.description ? singleProduct.description : ""}
+            onChange={(e) => {
+              setDescription(e.target.value);
             }}
           />
           {/* <select
