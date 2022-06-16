@@ -13,8 +13,11 @@ const Search = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log("🚀 ~ file: Search.js ~ line 18 ~ submitHandler ~ e.target[0].value", e.target[0].value)
     const nameQuery = { value: product.value, type: "name" };
-    product.value ?
+    e.target[0].value=''
+    product.onChange()
+    nameQuery.value ?
       dispach(setWayToFilter(nameQuery)):
       alert('Por favor indique algun parametro de busqueda')
     };
@@ -30,7 +33,6 @@ const Search = () => {
             placeholder="What are you looking for?"
             aria-label="Product"
             aria-describedby="input-group-button-right"
-            defaultValue=''
           />
           <button
             type="submit"

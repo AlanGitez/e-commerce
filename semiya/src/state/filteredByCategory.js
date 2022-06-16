@@ -5,8 +5,6 @@ export const filteredCategoryRequest = createAsyncThunk(
   "SEND_FILTEREDCATEGORY_REQUEST",
   (undefined, thunkAPI) => {
     const {wayToFilter} = thunkAPI.getState()
-    console.log("🚀 ~ file: filteredByCategory.js ~ line 8 ~  thunkAPI.getState()",  thunkAPI.getState())
-    console.log("🚀 ~ file: filteredByCategory.js ~ line 8 ~ wayToFilter", wayToFilter)
 
     const { value } = wayToFilter;
     return axios.get(`/api/categories/${value}`).then((res) => res.data);
