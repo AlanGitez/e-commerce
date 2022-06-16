@@ -14,9 +14,10 @@ const PastPurchase = () => {
   const [items, setItems] = useState([]);
 
   const myPurchases = useSelector((state) => state.myPurchases);
-  console.log("🚀 ~ file: PastPurchase.js ~ line 17 ~ PastPurchase ~ myPurchases", myPurchases)
-  const myPurchase = myPurchases[purchaseId-1];
-  console.log("🚀 ~ file: PastPurchase.js ~ line 18 ~ PastPurchase ~ myPurchase", myPurchase)
+
+   const myPurchase = myPurchases[purchaseId];
+ 
+  console.log("🚀 ~ file: PastPurchase.js ~ line 21 ~ PastPurchase ~ myPurchase", myPurchase)
 
   useEffect(() => {
     const products = myPurchase.cart.map((product) => {
@@ -32,7 +33,7 @@ const PastPurchase = () => {
 
   return (
     <>
-      <h2>The Purchase of {myPurchase.createdAt.slice(0, 10)}</h2>
+      <h2>The Purchase of {myPurchase?.createdAt.slice(0, 10)}</h2>
       <Table striped responsive hover>
         <thead>
           <tr>
@@ -45,7 +46,7 @@ const PastPurchase = () => {
         </thead>
         <tbody>
           {items.map((product, i) => (
-            <tr>
+            <tr key={i}>
               <td>{i + 1}</td>
               <td>{product.name}</td>
               <td>{product.price}</td>

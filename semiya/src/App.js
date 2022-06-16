@@ -49,7 +49,7 @@ function App() {
     dispatch(defaultProductRequest()).then(() => dispatch(renderedProducts()));
     dispatch(defaultCategoriesRequest());
     const localUser = JSON.parse(localStorage.getItem("user"));
-    localUser!==null && dispatch(setUser())
+    localUser && dispatch(setUser())
     .then((user)=> user.payload && setStorageUser(user.payload))
     .catch((err)=>console.log(err));
     !cart.length && dispatch(updateFromStorage());
