@@ -22,7 +22,7 @@ const NewCategory = () => {
   return (
     <>
       <Link to={`/profile/${user.id}/admin`}>
-        <button className="btn btn-success littleMargin">Back</button>
+        <button className="btn btn-success littleMargin">Back to Admin</button>
       </Link>
       <form onSubmit={submitHandler}>
         <label htmlFor="inputName" className="form-label">

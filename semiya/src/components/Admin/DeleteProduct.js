@@ -27,7 +27,7 @@ const DeleteProduct = () => {
   return (
     <>
       <Link to={`/profile/${user.id}/admin`}>
-        <button className="btn btn-success littleMargin">Back</button>
+        <button className="btn btn-success littleMargin">Back to Admin</button>
       </Link>
       <h1>PRODUCT TO DELETE 🗑</h1>
       <select
@@ -53,6 +53,7 @@ const DeleteProduct = () => {
                 <img
                   src={singleProduct.image}
                   className="img-fluid rounded-start"
+                  style={{height:"450px"}}
                   alt="..."
                 />
               </div>

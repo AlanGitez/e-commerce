@@ -18,9 +18,10 @@ body {
 --md: 16px;
 --lg: 18px;
 }
-* {
+body {
 margin: 0;
 font-family: 'Quicksand', sans-serif;
+min-height: 900px;
 }
 
 a, p {
@@ -269,6 +270,20 @@ nav {
   width: 60%;
   height: 60%;
   object-fit: cover;
+}
+
+.footer{
+  position:fixed;
+  bottom:0;
+  clear:both;
+  width:100%;
+  background-color: #88A85D;
+  color: #FFFFFF;
+}
+
+.footer-a-p {
+  color: #FFFFFF;
+  text-decoration: none;
 }
 
 @media (max-width: 640px) {

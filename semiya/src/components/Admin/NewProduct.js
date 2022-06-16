@@ -41,7 +41,7 @@ const NewProduct = () => {
   return (
     <>
       <Link to={`/profile/${user.id}/admin`}>
-        <button className="btn btn-success littleMargin">Go to Admin</button>
+        <button className="btn btn-success littleMargin">Back to Admin</button>
       </Link>
 
       <form onSubmit={submitHandler}>
