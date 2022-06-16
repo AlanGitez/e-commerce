@@ -21,6 +21,8 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import { setUser } from "./state/user";
 import Profile from "./components/Profile";
 import Admin from "./components/Admin";
+import UserPurchases from "./components/UserPurchases.js";
+import PastPurchase from './components/PastPurchase.js'
 import NewProduct from "./components/Admin/NewProduct";
 import UpdateProduct from "./components/Admin/UpdateProduct";
 import NewCategory from "./components/Admin/NewCategory";
@@ -62,7 +64,7 @@ function App() {
       dispatch(filteredCategoryRequest()).then(() =>
         dispatch(renderedProducts())
       );
-    // navigate(`/products?${wayToFilter.type}=${wayToFilter.value}`);
+
   }, [wayToFilter]);
 
   useEffect(() => {
@@ -83,6 +85,8 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/profile/:id/purchases" element={<UserPurchases />} />
+          <Route path="/profile/1/purchases/:purchaseId" element={<PastPurchase />} />
           <Route path="/profile/:id/admin" element={<Admin />} />
           <Route path="/profile/:id/admin/new-product" element={<NewProduct />} />
           <Route path="/profile/:id/admin/update-product" element={<UpdateProduct />} />

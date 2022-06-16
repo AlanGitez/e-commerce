@@ -40,7 +40,6 @@ const CartItem = ({ product }) => {
     }
   }, [quantity])
   
-  console.log(quantity);
   return (
     <>
       <li className="list-group-item">
