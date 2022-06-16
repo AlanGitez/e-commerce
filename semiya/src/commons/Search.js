@@ -18,7 +18,7 @@ const Search = () => {
     e.target[0].value=''
     product.onChange()
     nameQuery.value ?
-      dispach(setWayToFilter(nameQuery)):
+      dispatch(setWayToFilter(nameQuery)):
       alert('Por favor indique algun parametro de busqueda')
     };
 

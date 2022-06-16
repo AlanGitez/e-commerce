@@ -7,11 +7,11 @@ const Profile = () => {
 
   return (
     <>
-      <div>
+      {/* <div>
         <Link to="admin" className="nav-link active">
           <button className="btn btn-success">Admin</button>
         </Link>
-      </div>
+      </div> */}
       <div className="container">
         <h4>Name:</h4>
         <h6>{user.name}</h6>

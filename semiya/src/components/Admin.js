@@ -39,7 +39,7 @@ const Admin = () => {
                 Admin Code:
               </label>
               <input
-                type="text"
+                type="password"
                 className="form-control"
                 id="inputAdminPassword"
                 placeholder="Admin Code..."

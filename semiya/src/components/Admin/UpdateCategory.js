@@ -23,7 +23,7 @@ const UpdateCategory = () => {
   return (
     <>
       <Link to={`/profile/${user.id}/admin`}>
-        <button className="btn btn-success littleMargin">Back</button>
+        <button className="btn btn-success littleMargin">Back to Admin</button>
       </Link>
       <h1>Update Category</h1>
 
