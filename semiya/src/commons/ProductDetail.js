@@ -47,7 +47,7 @@ const ProductDetail = () => {
               <p className="card-text">$:{singleProduct.price}</p>
               <AddCartButton product={singleProduct} />
 
-              {user.type === "admin" && (
+              {user?.type === "admin" && (
                 <>
                   <p className="card-text">{`Stock: ${singleProduct.stock}`}</p>
                   <Link to={`/profile/${user.id}/admin/update-product`}>
@@ -62,7 +62,7 @@ const ProductDetail = () => {
                   </Link>
                 </>
               )}
-              {!user.type && (
+              {!user?.type && (
                 <p className="card-text">
                   {singleProduct.stock ? "Hay Stock" : "No contamos con Stock"}
                 </p>

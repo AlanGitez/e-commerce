@@ -9,8 +9,8 @@ const ProductList = () => {
   return (
     <>
       <Navbar />
-      <div className="container-sm">
-        <div className="row row-cols-1 row-cols-md-3 g-4">
+      <div className="main-container"> {/* Esta clase no existe */}
+        <div className="cards-container"> 
           {renderedProducts.map((product, i) => (
             <ProductItem key={i} product={product} />
           ))}
