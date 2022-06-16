@@ -14,7 +14,9 @@ const PastPurchase = () => {
   const [items, setItems] = useState([]);
 
   const myPurchases = useSelector((state) => state.myPurchases);
-  const myPurchase = myPurchases[purchaseId];
+  console.log("🚀 ~ file: PastPurchase.js ~ line 17 ~ PastPurchase ~ myPurchases", myPurchases)
+  const myPurchase = myPurchases[purchaseId-1];
+  console.log("🚀 ~ file: PastPurchase.js ~ line 18 ~ PastPurchase ~ myPurchase", myPurchase)
 
   useEffect(() => {
     const products = myPurchase.cart.map((product) => {

@@ -45,20 +45,20 @@ const ShoppingCart = () => {
           <div className="col-sm d-flex justify-content-end">
             <button
               onClick={cleanCart}
-              className="btn btn-warning littleMargin"
+              className="Shopping-secondary-button"
             >
-              Limpiar Carrito
+              EMPTY CART
             </button>
           </div>
 
           <div className="col-sm-5 d-flex align-items-center justify-content-end">
-            <h4>{`TOTAL ${totalAmount}`}</h4>
+            <h4>{`TOTAL $ ${totalAmount}`}</h4>
           </div>
 
             <button onClick={(e) => {
               e.preventDefault();
               navigate("/shopping-cart/check-out");
-            }} disabled={!virtualCart.length} className="btn btn-success">GO CHECKOUT!</button>
+            }} disabled={!virtualCart.length} className="shopping-button">GO CHECKOUT!</button>
 
         </div>
       </div>

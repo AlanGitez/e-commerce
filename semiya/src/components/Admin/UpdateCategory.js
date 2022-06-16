@@ -1,23 +1,29 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import useInput from "../../hooks/useInput";
 import { updateRequest } from "../../state/admin/updateForAdmin";
-import { defaultCaqteogriesRequest } from "../../state/defaultCategories";
+import { defaultCategoriesRequest } from "../../state/defaultCategories";
 
 const UpdateCategory = () => {
   const [selectedCategory, setSelectedCategory] = useState(0);
   const categories = useSelector((state) => state.defaultCategories);
   const user = useSelector((state) => state.user);
   const newName = useInput();
-  const navigate = useNavigate()
   const dispatch = useDispatch()
   
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(updateRequest({type: "categories", id: selectedCategory, body: {name: newName.value}}))
-    dispatch(defaultCaqteogriesRequest())
-    navigate(`/profile/${user.id}/admin`)
+    dispatch(
+      updateRequest({
+        type: "categories",
+        id: selectedCategory,
+        body: { name: newName.value },
+      })
+    )
+      .then(() => dispatch(defaultCategoriesRequest()))
+      .then(() => alert("Category updated"))
+      .catch((error) => console.log(error));
   };
   
   return (

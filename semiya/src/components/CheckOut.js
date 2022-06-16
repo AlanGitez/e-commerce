@@ -1,9 +1,15 @@
 import axios from "axios";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useInput from "../hooks/useInput";
+import { useNavigate } from "react-router";
+import { clearCart } from "../state/cart";
+import { clearVirtualCart } from "../state/virtualCart";
+
 
 const CheckOut = () => {
+  const navigate=useNavigate()
+  const dispatch=useDispatch()
   const totalAmount = useSelector((state) => state.totalAmount);
   const user = useSelector(state => state.user);
   const cart = useSelector(state => state.cart);
@@ -27,7 +33,10 @@ const CheckOut = () => {
       cart: cart,
       totalAmount: totalAmount})
       .then(res => res.data)
-      .then(purchase => alert(purchase))
+      .then(purchase => alert('Tu compra ha sido realizada'))
+      .then(()=>dispatch(clearCart()))
+      .then(()=>dispatch(clearVirtualCart()))
+      .then(() => navigate('/'))
       .catch(err => console.error(err));
   } ;
 
@@ -49,6 +58,7 @@ const CheckOut = () => {
                   id="validationCustom01"
                   {...name}
                   required={true}
+                  placeholder={user?.name}
                 />
                 <div className="valid-feedback">Looks good!</div>
               </div>
@@ -62,6 +72,7 @@ const CheckOut = () => {
                   id="validationCustom02"
                   {...lastname}
                   required={true}
+                  placeholder={user?.lastName}
                 />
                 <div className="valid-feedback">Looks good!</div>
               </div>
@@ -80,6 +91,7 @@ const CheckOut = () => {
                     aria-describedby="inputGroupPrepend"
                     {...email}
                     required={true}
+                    placeholder={user?.email}
                   />
                   <div className="invalid-feedback">Please choose a username.</div>
                 </div>
@@ -95,6 +107,7 @@ const CheckOut = () => {
                   id="validationCustom03"
                   {...city}
                   required={true}
+                  placeholder='Your city hermano'
                 />
                 <div className="invalid-feedback">Please provide a valid city.</div>
               </div>
@@ -109,8 +122,9 @@ const CheckOut = () => {
                   id="validationCustom03"
                   {...adress}
                   required={true}
+                  placeholder={user?.adress}
                 />
-                <div className="invalid-feedback">Please provide a valid city.</div>
+                <div className="invalid-feedback">Please provide a valid adress.</div>
               </div>
 
               <div className="col-12">

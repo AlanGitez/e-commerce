@@ -41,7 +41,6 @@ function App() {
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
   const wayToFilter = useSelector((state) => state.wayToFilter);
-
   const [storageCart, setStorageCart] = useLocalStorage("cart", cart);
   const [storageUser, setStorageUser] = useLocalStorage("user", "");
   const dispatch = useDispatch();
@@ -49,8 +48,10 @@ function App() {
   useEffect(() => {
     dispatch(defaultProductRequest()).then(() => dispatch(renderedProducts()));
     dispatch(defaultCategoriesRequest());
-    dispatch(setUser());
-    user.id && setStorageUser(user.id);
+    const localUser = JSON.parse(localStorage.getItem("user"));
+    localUser!==null && dispatch(setUser())
+    .then((user)=> user.payload && setStorageUser(user.payload))
+    .catch((err)=>console.log(err));
     !cart.length && dispatch(updateFromStorage());
   }, []);
 
@@ -67,7 +68,6 @@ function App() {
       dispatch(filteredCategoryRequest()).then(() =>
         dispatch(renderedProducts())
       );
-
   }, [wayToFilter]);
 
   useEffect(() => {

@@ -22,9 +22,16 @@ const UpdateProduct = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(updateRequest({type: "products", id: singleProduct.id, body: {name, price, stock, fraccionable, image, description}}))
-    dispatch(defaultProductRequest())
-    navigate(`/product/${selectedProduct}`)
+    dispatch(
+      updateRequest({
+        type: "products",
+        id: singleProduct.id,
+        body: { name, price, stock, fraccionable, image, description },
+      })
+    )
+      .then(() => dispatch(defaultProductRequest()))
+      .then(() => navigate(`/product/${selectedProduct}`))
+      .catch((error) => console.log(error));
   };
 
   useEffect(()=>{

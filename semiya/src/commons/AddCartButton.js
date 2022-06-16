@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../state/cart';
 
+
+
 const AddCartButton = ({product}) => {
   const [disabled, setDisabled] = useState(false);
   const cart = useSelector(state => state.cart);
@@ -20,9 +22,10 @@ const AddCartButton = ({product}) => {
         type="button"
         disable={product.stock ? "false" : "true"}
         className={`btn btn-success `}
+        style={{height:"40px" ,width:"50px"}}
         onClick={handlerClick}
         disabled={cart.includes(product)}>
-        Add to Cart
+      <strong>+</strong>
       </button>
     </>
   );

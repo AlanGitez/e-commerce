@@ -1,7 +1,7 @@
 import React from "react";
 import useInput from "../hooks/useInput";
 import { useNavigate, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch,  } from "react-redux";
 import { loginRequest, setUser } from "../state/user";
 
 const Login = () => {
@@ -10,12 +10,13 @@ const Login = () => {
   const password = useInput();
   const dispatch = useDispatch();
 
+
   const loginHandler = (e) => {
     e.preventDefault();
     dispatch(loginRequest({ email: email.value, password: password.value }))
       .then(() => dispatch(setUser()))
-      .then(() => navigate("/"))
-      .catch((err) => console.error(err));
+      .then((user) => user.payload? navigate("/"): alert('No has sido logueado'))
+      .catch((err) =>console.log(err) );
   };
 
   return (
@@ -47,21 +48,12 @@ const Login = () => {
               {...password}
             />
           </div>
-          {/* Descomentar esto para cuando tengamos a mano la persistencia */}
-          {/* <div className="form-check mb-3">
-            <label className="form-check-label">
-            <input className="form-check-input" type="checkbox" name="remember" />{" "}
-            Remember me
-            </label>
-          </div> */}
+          
           <button type="submit" className="primary-button signup-button">
             Log In
           </button>
           <br/>
-          {/* Descomentar esto para cuando tengamos a mano la persistencia */}
-          {/* <Link to="/ForgotPassword">
-            <p>Forgot Password?</p>
-          </Link> */}
+  
           <button type="submit" className="secondary-button signup-button">
             <Link to="/Register">Register</Link>
           </button>

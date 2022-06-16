@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteRequest } from "../../state/admin/deleteForAdmin";
-import { defaultCaqteogriesRequest } from "../../state/defaultCategories";
+import { defaultCategoriesRequest } from "../../state/defaultCategories";
 
 
 const DeleteCategory = () => {
@@ -15,9 +15,9 @@ const DeleteCategory = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(deleteRequest({type: "categories",id: selectedCategory}))
-    dispatch(defaultCaqteogriesRequest())
-    navigate(`/profile/${user.id}/admin`)
-
+    .then(()=>dispatch(defaultCategoriesRequest()))
+    .then(()=> navigate(`/profile/${user.id}/admin`))
+    .catch(error => console.log(error))
   };
 
   return (

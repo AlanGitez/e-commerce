@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import useInput from "../hooks/useInput";
+ import useInput from "../hooks/useInput";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { singleProductRequest } from "../state/singleProduct";
 import Navbar from "../components/Navbar";
 import AddCartButton from "./AddCartButton";
-import { textAreaSubmitEvent } from "../utils/utils";
+import axios from 'axios'
+// import { textAreaSubmitEvent } from "../utils/utils";
 
 const ProductDetail = () => {
-  // const newReview = useInput();
+  const newReview = useInput();
   const { id } = useParams();
   const dispatch = useDispatch();
   const singleProduct = useSelector((state) => state.singleProduct);

@@ -3,7 +3,7 @@ import useInput from "../../hooks/useInput";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addRequest } from "../../state/admin/addForAdmin";
-import { defaultCaqteogriesRequest } from "../../state/defaultCategories";
+import { defaultCategoriesRequest } from "../../state/defaultCategories";
 
 const NewCategory = () => {
   const user = useSelector((state) => state.user);
@@ -14,7 +14,7 @@ const NewCategory = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(addRequest({type: "categories", body: {name: name.value}}))
-    .then(()=>dispatch(defaultCaqteogriesRequest()))
+    .then(()=>dispatch(defaultCategoriesRequest()))
     .then(()=>navigate(`/profile/${user.id}/admin`))
     .catch(error => console.log(error))
   };
